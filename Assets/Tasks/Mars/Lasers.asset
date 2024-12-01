@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17ad93ab1954464482eac5e252f32fe, type: 3}
+  m_Name: Lasers
+  m_EditorClassIdentifier: 
+  name: Lasers
+  description: Melt the surface of Mars with Lasers to make a breathable atmosphere!
+  icon: {fileID: -4798137097560686652, guid: 153343f2a17587f45825a25c3a14689a, type: 3}
+  materialCost: 1000
+  energyCost: 300
+  experienceGain: 300
+  moneyGain: 0
+  levelRequired: 15
+  placeToBuild: {fileID: 0}
+  unlocked: 0
+  oilCost: 100
+  completed: 0
+  level2: 0
+  level5: 0
+  level10: 0
+  level15: 0
+  level20: 0
+  isOilDepositer: 0
+  oilGain: 0
+  moneyCost: 0
+  dependencies: []

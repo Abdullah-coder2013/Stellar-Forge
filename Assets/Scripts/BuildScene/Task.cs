@@ -1,0 +1,82 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Task", menuName = "Scriptable Objects/Task")]
+public class Task : ScriptableObject
+{
+    public new string name;
+    public string description;
+    public Sprite icon;
+    public int materialCost;
+    public int energyCost;
+    public int experienceGain;
+    public int moneyGain;
+    public int levelRequired;
+    public Transform placeToBuild;
+    public bool unlocked;
+    public int oilCost;
+    
+    public bool completed;
+
+    public bool level2;
+    public bool level5;
+    public bool level10;
+    public bool level15;
+    public bool level20;
+
+    public bool isOilDepositer;
+    public int oilGain;
+    public int moneyCost;
+    public List<Task> dependencies = new List<Task>();
+    public float timeNeededinSeconds;
+    public bool usable;
+
+    public Task(string name, string description, Sprite icon, int materialCost, int energyCost, int experienceGain, int moneyGain, int levelRequired, Transform placeToBuild, bool unlocked, bool completed, bool level2, bool level5, bool level10, bool level15, bool level20, bool isOilDepositer, int oilGain, int oilCost, int moneyCost, List<Task> dependencies, float timeNeededinSeconds, bool usable)
+    {
+        this.name = name;
+        this.description = description;
+        this.icon = icon;
+        this.materialCost = materialCost;
+        this.energyCost = energyCost;
+        this.experienceGain = experienceGain;
+        this.levelRequired = levelRequired;
+        this.unlocked = unlocked;
+        this.placeToBuild = placeToBuild;
+        this.completed = completed;
+        this.moneyGain = moneyGain;
+        this.level2 = level2;
+        this.level5 = level5;
+        this.level10 = level10;
+        this.level15 = level15;
+        this.level20 = level20;
+        this.isOilDepositer = isOilDepositer;
+        this.oilGain = oilGain;
+        this.oilCost = oilCost;
+        this.moneyCost = moneyCost;
+        this.dependencies = dependencies;
+        this.timeNeededinSeconds = timeNeededinSeconds;
+        this.usable = usable;
+    }
+    public bool Complete()
+    {
+        if (!completed) {
+            completed = true;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public bool Unlock(int level)
+    {
+        if (levelRequired <= level) {
+            unlocked = true;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public bool GetUsable() { this.usable = true;return usable; }
+    public void SetPlaceToBuild(Transform placeToBuild) { this.placeToBuild = placeToBuild; }
+}

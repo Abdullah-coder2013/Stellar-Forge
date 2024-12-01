@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70ae4b90da942c43a11e8802f4d0670, type: 3}
+  m_Name: Mars
+  m_EditorClassIdentifier: 
+  levelNeededToUnlock: 15
+  planetName: Mars
+  planetSprite: {fileID: -1097753813296491289, guid: 303fe4d4ddfdb6a4bb6f32b03d88ab2a, type: 3}
+  tasks:
+  - {fileID: 11400000, guid: 8762ff3c8e37575409e9b5cb264fba53, type: 2}
+  - {fileID: 11400000, guid: 8fd1185ccf1d2ef4c8216d7045223b60, type: 2}
+  - {fileID: 11400000, guid: 0cfb6bad98f186848b6a2100a8121861, type: 2}
+  - {fileID: 11400000, guid: f09c8056179941a4799e5b2a119e081d, type: 2}
+  unlocked: 0
+  forTerraforming: 1

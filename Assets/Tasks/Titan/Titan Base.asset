@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17ad93ab1954464482eac5e252f32fe, type: 3}
+  m_Name: Titan Base
+  m_EditorClassIdentifier: 
+  name: Titan Base
+  description: Build your N2 Bombs here! Fresh Nitrogen for a few grands!
+  icon: {fileID: -8574546087326221986, guid: 11cad48425ba8e04983989f12664630b, type: 3}
+  materialCost: 25000
+  energyCost: 500
+  experienceGain: 1000
+  moneyGain: 2
+  levelRequired: 20
+  placeToBuild: {fileID: 0}
+  unlocked: 0
+  oilCost: 1000
+  completed: 0
+  level2: 0
+  level5: 0
+  level10: 0
+  level15: 0
+  level20: 0
+  isOilDepositer: 1
+  oilGain: 1
+  moneyCost: 100000
+  dependencies: []

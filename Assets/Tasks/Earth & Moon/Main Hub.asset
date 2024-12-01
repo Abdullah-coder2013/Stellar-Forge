@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17ad93ab1954464482eac5e252f32fe, type: 3}
+  m_Name: Main Hub
+  m_EditorClassIdentifier: 
+  name: Main Hub
+  description: MAIN HUB tracks your stats, manages resources, and generates income
+    for your terraforming journey!
+  icon: {fileID: -1656166294940094332, guid: 24e292e8f1db38a4380cf44c0c0e763d, type: 3}
+  materialCost: 100
+  energyCost: 10
+  experienceGain: 100
+  moneyGain: 1
+  levelRequired: 1
+  placeToBuild: {fileID: 0}
+  unlocked: 0
+  oilCost: 0
+  completed: 0
+  level2: 0
+  level5: 0
+  level10: 0
+  level15: 0
+  level20: 0
+  isOilDepositer: 0
+  oilGain: 0
+  moneyCost: 0
+  dependencies: []
+  timeNeededinSeconds: 120
+  usable: 0

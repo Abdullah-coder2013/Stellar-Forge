@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70ae4b90da942c43a11e8802f4d0670, type: 3}
+  m_Name: Earth
+  m_EditorClassIdentifier: 
+  levelNeededToUnlock: 0
+  planetName: Earth
+  planetSprite: {fileID: 6423806749927177598, guid: 6f259b40cca2afc4ca729f0c254270a2, type: 3}
+  tasks:
+  - {fileID: 11400000, guid: a07f7e21e9c71f8469604c646d98ad11, type: 2}
+  - {fileID: 11400000, guid: 4fe80e22e21af0e4d8e6702c4fdf67fa, type: 2}
+  - {fileID: 11400000, guid: 12fd81b9fd9d2a94cb3d0cb38b1f9cbb, type: 2}
+  - {fileID: 11400000, guid: 18734a158725aee42963174a5bbb8cb7, type: 2}
+  unlocked: 0
+  forTerraforming: 0

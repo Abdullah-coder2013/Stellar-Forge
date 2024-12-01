@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70ae4b90da942c43a11e8802f4d0670, type: 3}
+  m_Name: Moon
+  m_EditorClassIdentifier: 
+  levelNeededToUnlock: 8
+  planetName: Moon
+  planetSprite: {fileID: 21300000, guid: e1c5a9d6b964a304cae0b7d3f2c38ad6, type: 3}
+  tasks:
+  - {fileID: 11400000, guid: a583ffd038e5190439db9acf549c8415, type: 2}

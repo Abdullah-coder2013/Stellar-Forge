@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17ad93ab1954464482eac5e252f32fe, type: 3}
+  m_Name: Rocket Launch Centre
+  m_EditorClassIdentifier: 
+  name: Rocket Launch Centre
+  description: Launch your missions! The Rocket Launch Center prepares and deploys
+    spacecraft for your terraforming adventures.
+  icon: {fileID: -3150344387745340581, guid: 353f95e4f56ff2b4f98b2bb95460e52b, type: 3}
+  materialCost: 1000
+  energyCost: 100
+  experienceGain: 500
+  moneyGain: 6
+  levelRequired: 5
+  placeToBuild: {fileID: 0}
+  unlocked: 0
+  completed: 0

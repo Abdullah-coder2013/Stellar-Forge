@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17ad93ab1954464482eac5e252f32fe, type: 3}
+  m_Name: Import Nitrogen
+  m_EditorClassIdentifier: 
+  name: Import Nitrogen
+  description: You need Nitrogen to make the atmosphere breathable and less flammable.
+  icon: {fileID: 4125683747480249424, guid: 48de1b647cc0fa94f82215fe1a81df5d, type: 3}
+  materialCost: 0
+  energyCost: 20
+  experienceGain: 100
+  moneyGain: 0
+  levelRequired: 23
+  placeToBuild: {fileID: 0}
+  unlocked: 0
+  oilCost: 0
+  completed: 0
+  level2: 0
+  level5: 0
+  level10: 0
+  level15: 0
+  level20: 0
+  isOilDepositer: 0
+  oilGain: 0
+  moneyCost: 0
+  dependencies:
+  - {fileID: 11400000, guid: 2ad8ef39c3974c14e81d5fc9258e9cca, type: 2}
+  - {fileID: 11400000, guid: 73a1e9b10684e6c4cb404b6448493232, type: 2}
