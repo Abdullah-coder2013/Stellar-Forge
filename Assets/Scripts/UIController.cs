@@ -1,5 +1,5 @@
 using TMPro;
-using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 [System.Serializable]
@@ -9,14 +9,35 @@ public class UIController : MonoBehaviour
     public TMP_Text EnergyShower;
     public int collectedExp;
     [SerializeField] private Canvas inGameUI;
+    [SerializeField] private GameObject PauseUI;
+    [SerializeField] private GameObject firstButton;
 
     private void Start(){
         MaterialShower.text = "0";
         EnergyShower.text = "0";
+        PauseUI.gameObject.SetActive(false);
 
     }
     private int cInt(string text){
         return int.Parse(text);
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        PauseUI.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstButton);
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        PauseUI.gameObject.SetActive(false);
+    }
+
+    public void ToBuild()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
     public void UpdateMaterial(int amount){

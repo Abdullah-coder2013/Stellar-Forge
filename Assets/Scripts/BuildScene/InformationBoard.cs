@@ -126,45 +126,76 @@ public class InformationBoard : MonoBehaviour
         }
     }
 
-    public void TaskComplete(int index) {
-        if (Tasks[index].unlocked == true) {
-            if (Tasks[index] != Tasks[0] && Tasks[index-1].completed == true) {
-                if (Tasks[index].materialCost <= SaveSystem.LoadData().material) {
-                if (Tasks[index].energyCost <= SaveSystem.LoadData().energy) {
-                    var existingData = SaveSystem.LoadData();
-                    existingData.material = existingData.material - Tasks[index].materialCost;
-                    existingData.energy = existingData.energy - Tasks[index].energyCost;
-                    SaveSystem.SaveData(existingData);
-                    Tasks[index].Complete();
-                    SaveSystem.SaveTask(Tasks[index]);
-                    Back();
+    public void TaskComplete(int index)
+    {
+        if (!Tasks[index].completed)
+        {
+            if (Tasks[index].unlocked)
+            {
+                if (Tasks[index] != Tasks[0] && Tasks[index - 1].completed)
+                {
+                    if (Tasks[index].materialCost <= SaveSystem.LoadData().material)
+                    {
+                        if (Tasks[index].energyCost <= SaveSystem.LoadData().energy)
+                        {
+                            var dependencies = new List<string>();
+                            foreach (var dependency in Tasks[index].dependencies)
+                            {
+                                dependencies.Add(dependency.name);
+                            }
+
+                            if (SaveSystem.LoadTasks(dependencies) == null)
+                            {
+                                NotificationManager.AddNotificationToQueue("You must complete tasks: " +
+                                                                           string.Join(", ", dependencies));
+                                return;
+                            }
+
+                            ;
+                            var existingData = SaveSystem.LoadData();
+                            existingData.material = existingData.material - Tasks[index].materialCost;
+                            existingData.energy = existingData.energy - Tasks[index].energyCost;
+                            SaveSystem.SaveData(existingData);
+                            Tasks[index].Complete();
+                            SaveSystem.SaveTask(Tasks[index]);
+                            Back();
+                        }
+                    }
                 }
-            }
-            }
-            else if (Tasks[index] == Tasks[0]) {
-                if (Tasks[index].materialCost <= SaveSystem.LoadData().material) {
-                if (Tasks[index].energyCost <= SaveSystem.LoadData().energy) {
-                    var existingData = SaveSystem.LoadData();
-                    existingData.material = existingData.material - Tasks[index].materialCost;
-                    existingData.energy = existingData.energy - Tasks[index].energyCost;
-                    SaveSystem.SaveData(existingData);
-                    Tasks[index].Complete();
-                    SaveSystem.SaveTask(Tasks[index]);
-                    Back();
+                else if (Tasks[index] == Tasks[0])
+                {
+                    if (Tasks[index].materialCost <= SaveSystem.LoadData().material)
+                    {
+                        if (Tasks[index].energyCost <= SaveSystem.LoadData().energy)
+                        {
+                            var existingData = SaveSystem.LoadData();
+                            existingData.material = existingData.material - Tasks[index].materialCost;
+                            existingData.energy = existingData.energy - Tasks[index].energyCost;
+                            SaveSystem.SaveData(existingData);
+                            Tasks[index].Complete();
+                            SaveSystem.SaveTask(Tasks[index]);
+                            Back();
+                        }
+                    }
                 }
+                else
+                {
+                    NotificationManager.AddNotificationToQueue("You need to complete the previous task first");
+                }
+
+
             }
+            else
+            {
+                NotificationManager.AddNotificationToQueue("You need to unlock the task first");
             }
-            else {
-                NotificationManager.AddNotificationToQueue("You need to complete the previous task first");
-            }
-            
-            
+
         }
-        else {
-            NotificationManager.AddNotificationToQueue("You need to unlock the task first");
+        else
+        {
+            NotificationManager.AddNotificationToQueue("You have already completed this task!");
         }
-        
+
     }
     
-
 }

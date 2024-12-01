@@ -32,4 +32,7 @@ MonoBehaviour:
   isOilDepositer: 0
   oilGain: 0
   moneyCost: 0
-  dependencies: []
+  dependencies:
+  - {fileID: 11400000, guid: a583ffd038e5190439db9acf549c8415, type: 2}
+  timeNeededinSeconds: 0
+  usable: 0

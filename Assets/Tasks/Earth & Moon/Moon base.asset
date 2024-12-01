@@ -23,4 +23,17 @@ MonoBehaviour:
   levelRequired: 10
   placeToBuild: {fileID: 0}
   unlocked: 0
+  oilCost: 0
   completed: 0
+  level2: 0
+  level5: 0
+  level10: 0
+  level15: 0
+  level20: 0
+  isOilDepositer: 0
+  oilGain: 0
+  moneyCost: 0
+  dependencies:
+  - {fileID: 11400000, guid: 12fd81b9fd9d2a94cb3d0cb38b1f9cbb, type: 2}
+  timeNeededinSeconds: 0
+  usable: 0

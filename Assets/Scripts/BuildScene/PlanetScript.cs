@@ -21,8 +21,10 @@ public class PlanetScript : MonoBehaviour
     private BuildUI buildUio;
     private SpriteRenderer sr;
     private List<Task> prefabs = new List<Task>();
+    private UpgradeBoard upgradeBoardScript;
 
     private void Awake() {
+        upgradeBoardScript = upgradeBoard.GetComponent<UpgradeBoard>();
         sr = GetComponent<SpriteRenderer>();
         buildUio = GameObject.Find("UIController").GetComponent<BuildUI>();
         forTerraforming = planet.forTerraforming;
@@ -85,22 +87,14 @@ public class PlanetScript : MonoBehaviour
                 tasks = planet.tasks;
             }
             foreach (Task task in tasks) {
-                if (task.completed == true) {
-                    var namess = new List<string>();
-                    foreach (Task d in task.dependencies) {
-                        namess.Add(d.name);
-                    }
-                    if (SaveSystem.LoadTasks(namess) == null) {
-                        
-                    }
-                    else {
+                if (task.completed) {
+                    
                         if (planet.forTerraforming == false) {
                         if (!prefabs.Any(t => t.name == task.name))
                 {
                     // Instantiate the prefab and add it to the list
                     var prefab = Instantiate(TaskPrefab, spawnPoints[tasks.IndexOf(task)].transform.position, spawnPoints[tasks.IndexOf(task)].transform.rotation, transform);
                     prefab.transform.GetChild(0).GetComponent<Image>().sprite = task.icon;
-                    var upgradeBoardScript = upgradeBoard.GetComponent<UpgradeBoard>();
                     prefab.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => {
                         if (task.usable){
                         upgradeBoardScript.ShowUpgradeBoard(task.name);
@@ -118,7 +112,7 @@ public class PlanetScript : MonoBehaviour
                             sr.sprite = task.icon;
                         }
                     }
-                    }
+                    
                     
                     
                 }
