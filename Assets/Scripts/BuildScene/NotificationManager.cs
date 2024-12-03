@@ -7,6 +7,7 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private GameObject notificationBoard;
     [SerializeField] private Transform spawnPoint;
     public static Queue<string> notificationQueue = new();
+    private static readonly int SlideOut = Animator.StringToHash("SlideOut");
 
     public static void AddNotificationToQueue(string notification) {
         notificationQueue.Enqueue(notification);
@@ -26,7 +27,7 @@ public class NotificationManager : MonoBehaviour
     private IEnumerator DestroyNotificationAfterDelay(GameObject notboard, float delay)
 {
     yield return new WaitForSeconds(delay);
-    notboard.GetComponent<Animator>().SetBool("SlideOut", true);
+    notboard.GetComponent<Animator>().SetBool(SlideOut, true);
     DestroyNotification(notboard);
 }
 

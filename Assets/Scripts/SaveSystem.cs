@@ -2,18 +2,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using IronSourceJSON;
-using UnityEngine.InputSystem.Interactions;
-using System;
-using Unity.VisualScripting;
 
 public static class SaveSystem
 {
-    const string SAVENAME = "/astromash.dat";
+    private const string Savename = "/astromash.dat";
     public static void SaveData(Data data) {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + SAVENAME;
+        string path = Application.persistentDataPath + Savename;
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -22,7 +18,7 @@ public static class SaveSystem
     }
 
     public static Data LoadData() {
-        string path = Application.persistentDataPath + SAVENAME;
+        var path = Application.persistentDataPath + Savename;
         if (File.Exists(path)) {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);

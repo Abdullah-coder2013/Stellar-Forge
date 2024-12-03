@@ -24,7 +24,7 @@ public class GameOverManager : MonoBehaviour
     {
         var player = Instantiate(playerPrefab, playerSpawnPosition.position, playerSpawnPosition.rotation);
         var playerScript = player.GetComponent<Player>();
-        playerScript.playerDeath += GameOver;
+        playerScript.PlayerDeath += GameOver;
         gameOverPanel.SetActive(false);
     }
 
@@ -51,7 +51,7 @@ public class GameOverManager : MonoBehaviour
     {
         UIController.GetComponent<UIController>().EnableInGameUI();
         var player = Instantiate(playerPrefab, playerSpawnPosition.position, playerSpawnPosition.rotation);
-        player.GetComponent<Player>().playerDeath += GameOver;
+        player.GetComponent<Player>().PlayerDeath += GameOver;
         Time.timeScale = 1f;
         gameOverPanel.SetActive(false);
     }

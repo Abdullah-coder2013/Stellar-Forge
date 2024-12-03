@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class InformationBoard : MonoBehaviour
@@ -9,21 +10,21 @@ public class InformationBoard : MonoBehaviour
     private float firstXSpawnPosition = -519;
     private float widthOfButton = 233.4507f;
     private int spaceWidth = 10;
-    public List<Task> Tasks = new List<Task>();
-    private List<GameObject> Buttons = new List<GameObject>();
-    [SerializeField] private GameObject ButtonPrefab;
+    [FormerlySerializedAs("Tasks")] public List<Task> tasks = new List<Task>();
+    private List<GameObject> buttons = new List<GameObject>();
+    [FormerlySerializedAs("ButtonPrefab")] [SerializeField] private GameObject buttonPrefab;
     public List<string> names = new List<string>();
     [SerializeField] private TMP_Text planetName;
 
-    public void SetTasks(List<Task> tasks) { Tasks = tasks; }
+    public void SetTasks(List<Task> tasks) { this.tasks = tasks; }
     public void SetNames(List<string> names) { this.names = names; }
     public void SetPlanetName(string name) {planetName.text = name;}
 
     private void Update() {
-        if (Tasks == null) {
+        if (tasks == null) {
             return;
         }
-        foreach (Task task in Tasks) {
+        foreach (Task task in tasks) {
             TaskUnlocked(task);
         }
         
@@ -37,16 +38,16 @@ public class InformationBoard : MonoBehaviour
     /// </summary>
     public void ShowTasks() {
         if (SaveSystem.LoadTasks(names) != null) {
-            Tasks = SaveSystem.LoadTasks(names);
+            tasks = SaveSystem.LoadTasks(names);
         }
         else {
-            foreach (Task task in Tasks) {
+            foreach (Task task in tasks) {
                 SaveSystem.SaveTask(task);
             }
-            Tasks = SaveSystem.LoadTasks(names);
+            tasks = SaveSystem.LoadTasks(names);
         }
 
-        foreach (Task task in Tasks) {
+        foreach (Task task in tasks) {
             var xpos = firstXSpawnPosition;
             if (spawnRect.childCount == 0) {
                 xpos = firstXSpawnPosition;
@@ -58,7 +59,7 @@ public class InformationBoard : MonoBehaviour
 
             }
             
-            var button = Instantiate(ButtonPrefab, new Vector3(spawnRect.position.x + xpos, spawnRect.position.y, 0), Quaternion.identity, spawnRect);
+            var button = Instantiate(buttonPrefab, new Vector3(spawnRect.position.x + xpos, spawnRect.position.y, 0), Quaternion.identity, spawnRect);
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = task.name;
             button.transform.GetChild(1).GetComponent<Image>().sprite = task.icon;
             button.transform.GetChild(2).gameObject.SetActive(true);
@@ -76,23 +77,23 @@ public class InformationBoard : MonoBehaviour
             }
             button.GetComponent<Button>().onClick.AddListener(() => {
 
-                TaskComplete(Tasks.IndexOf(task));
+                TaskComplete(tasks.IndexOf(task));
                 
                 
             });
-            Buttons.Add(button);
+            buttons.Add(button);
         }
     }
     public void Back() {
-         foreach (GameObject button in Buttons) {
+         foreach (GameObject button in buttons) {
              Destroy(button);
          }
-         Buttons.Clear();
+         buttons.Clear();
          gameObject.SetActive(false);
     }
 
     private void Refresh(Task task) {
-        foreach (GameObject button in Buttons) {
+        foreach (GameObject button in buttons) {
             if (button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == task.name) {
                 if (task.unlocked == true && task.completed == false) {
                     button.transform.GetChild(3).gameObject.SetActive(false);
@@ -128,18 +129,18 @@ public class InformationBoard : MonoBehaviour
 
     public void TaskComplete(int index)
     {
-        if (!Tasks[index].completed)
+        if (!tasks[index].completed)
         {
-            if (Tasks[index].unlocked)
+            if (tasks[index].unlocked)
             {
-                if (Tasks[index] != Tasks[0] && Tasks[index - 1].completed)
+                if (tasks[index] != tasks[0] && tasks[index - 1].completed)
                 {
-                    if (Tasks[index].materialCost <= SaveSystem.LoadData().material)
+                    if (tasks[index].materialCost <= SaveSystem.LoadData().material)
                     {
-                        if (Tasks[index].energyCost <= SaveSystem.LoadData().energy)
+                        if (tasks[index].energyCost <= SaveSystem.LoadData().energy)
                         {
                             var dependencies = new List<string>();
-                            foreach (var dependency in Tasks[index].dependencies)
+                            foreach (var dependency in tasks[index].dependencies)
                             {
                                 dependencies.Add(dependency.name);
                             }
@@ -153,27 +154,27 @@ public class InformationBoard : MonoBehaviour
 
                             ;
                             var existingData = SaveSystem.LoadData();
-                            existingData.material = existingData.material - Tasks[index].materialCost;
-                            existingData.energy = existingData.energy - Tasks[index].energyCost;
+                            existingData.material = existingData.material - tasks[index].materialCost;
+                            existingData.energy = existingData.energy - tasks[index].energyCost;
                             SaveSystem.SaveData(existingData);
-                            Tasks[index].Complete();
-                            SaveSystem.SaveTask(Tasks[index]);
+                            tasks[index].Complete();
+                            SaveSystem.SaveTask(tasks[index]);
                             Back();
                         }
                     }
                 }
-                else if (Tasks[index] == Tasks[0])
+                else if (tasks[index] == tasks[0])
                 {
-                    if (Tasks[index].materialCost <= SaveSystem.LoadData().material)
+                    if (tasks[index].materialCost <= SaveSystem.LoadData().material)
                     {
-                        if (Tasks[index].energyCost <= SaveSystem.LoadData().energy)
+                        if (tasks[index].energyCost <= SaveSystem.LoadData().energy)
                         {
                             var existingData = SaveSystem.LoadData();
-                            existingData.material = existingData.material - Tasks[index].materialCost;
-                            existingData.energy = existingData.energy - Tasks[index].energyCost;
+                            existingData.material = existingData.material - tasks[index].materialCost;
+                            existingData.energy = existingData.energy - tasks[index].energyCost;
                             SaveSystem.SaveData(existingData);
-                            Tasks[index].Complete();
-                            SaveSystem.SaveTask(Tasks[index]);
+                            tasks[index].Complete();
+                            SaveSystem.SaveTask(tasks[index]);
                             Back();
                         }
                     }

@@ -44,6 +44,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""Button"",
+                    ""id"": ""675c22c2-d22b-4eee-ad0b-6e1514cc33d9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +187,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1de4d91f-1c49-4ac0-b7ae-fc15e1c9ac0b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14acd921-cbc1-4459-8f69-8aa22920e61e"",
+                    ""path"": ""<Touchscreen>/touch0/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +219,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_PlayerInputActions = asset.FindActionMap("PlayerInputActions", throwIfNotFound: true);
         m_PlayerInputActions_Move = m_PlayerInputActions.FindAction("Move", throwIfNotFound: true);
         m_PlayerInputActions_Shoot = m_PlayerInputActions.FindAction("Shoot", throwIfNotFound: true);
+        m_PlayerInputActions_Drag = m_PlayerInputActions.FindAction("Drag", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -256,12 +288,14 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private List<IPlayerInputActionsActions> m_PlayerInputActionsActionsCallbackInterfaces = new List<IPlayerInputActionsActions>();
     private readonly InputAction m_PlayerInputActions_Move;
     private readonly InputAction m_PlayerInputActions_Shoot;
+    private readonly InputAction m_PlayerInputActions_Drag;
     public struct PlayerInputActionsActions
     {
         private @PlayerInputs m_Wrapper;
         public PlayerInputActionsActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerInputActions_Move;
         public InputAction @Shoot => m_Wrapper.m_PlayerInputActions_Shoot;
+        public InputAction @Drag => m_Wrapper.m_PlayerInputActions_Drag;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInputActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -277,6 +311,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Drag.started += instance.OnDrag;
+            @Drag.performed += instance.OnDrag;
+            @Drag.canceled += instance.OnDrag;
         }
 
         private void UnregisterCallbacks(IPlayerInputActionsActions instance)
@@ -287,6 +324,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Drag.started -= instance.OnDrag;
+            @Drag.performed -= instance.OnDrag;
+            @Drag.canceled -= instance.OnDrag;
         }
 
         public void RemoveCallbacks(IPlayerInputActionsActions instance)
@@ -308,5 +348,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnDrag(InputAction.CallbackContext context);
     }
 }
