@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Import Nitrogen
   m_EditorClassIdentifier: 
   name: Import Nitrogen
+  planetName: Mars
   description: You need Nitrogen to make the atmosphere breathable and less flammable.
   icon: {fileID: 4125683747480249424, guid: 48de1b647cc0fa94f82215fe1a81df5d, type: 3}
   materialCost: 0
@@ -35,3 +36,5 @@ MonoBehaviour:
   dependencies:
   - {fileID: 11400000, guid: 2ad8ef39c3974c14e81d5fc9258e9cca, type: 2}
   - {fileID: 11400000, guid: 73a1e9b10684e6c4cb404b6448493232, type: 2}
+  timeNeededinSeconds: 0
+  usable: 0

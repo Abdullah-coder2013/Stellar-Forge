@@ -8,7 +8,8 @@ public class UpgradeManager : MonoBehaviour
     public int level = 1;
 
     private void Start() {
-        level = int.Parse(SaveSystem.LoadUpgrade(upgrade.upgradeName).level);
+        if (SaveSystem.LoadUpgrade(upgrade.upgradeName).level != null)
+            level = int.Parse(SaveSystem.LoadUpgrade(upgrade.upgradeName).level);
     }
 
     private void Update() {

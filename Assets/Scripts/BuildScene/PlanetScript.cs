@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class PlanetScript : MonoBehaviour
 {
     [SerializeField] private Planet planet;
     [SerializeField] private Canvas informationBoard;
     [SerializeField] private Canvas upgradeBoard;
-
-    [SerializeField] private bool forTerraforming;
+    private bool forTerraforming;
 
     [SerializeField] private GameObject TaskPrefab;
     [SerializeField] private List<Transform> spawnPoints;
@@ -22,6 +20,7 @@ public class PlanetScript : MonoBehaviour
     private SpriteRenderer sr;
     private List<Task> prefabs = new List<Task>();
     private UpgradeBoard upgradeBoardScript;
+    private List<Task> savedTasks = new List<Task>();
 
     private void Awake() {
         upgradeBoardScript = upgradeBoard.GetComponent<UpgradeBoard>();
@@ -34,6 +33,8 @@ public class PlanetScript : MonoBehaviour
     }
     private void Start() {
         informationBoard.gameObject.SetActive(false);
+        var informationBoardScript = informationBoard.GetComponent<InformationBoard>();
+        informationBoardScript.TaskBuilt += InformationBoardScriptOnTaskBuilt;
         if (SaveSystem.LoadPlanet(planet.planetName) != null) {
             planet = SaveSystem.LoadPlanet(planet.planetName);
         }
@@ -41,18 +42,39 @@ public class PlanetScript : MonoBehaviour
             SaveSystem.SavePlanet(planet);
             planet = SaveSystem.LoadPlanet(planet.planetName);
         }
+        foreach (var newTask in planet.tasks)
+        {
+            var loadedTask = SaveSystem.LoadTask(newTask.name);
+            if (loadedTask)
+            {
+                savedTasks.Add(loadedTask);
+            }
+            else
+            {
+                savedTasks.Add(newTask);
+            }
+        }
         var names = new List<string>();
-        foreach (Task task in planet.tasks) {
+        foreach (var task in savedTasks) {
             names.Add(task.name);
         }
-        StartCoroutine(getMoneyFromTasks(names));
-        StartCoroutine(CheckForCompletedTasks());
+
+        foreach (var task in savedTasks)
+        {
+            CheckForCompletedTasksAndBuildThem(task);
+        }
+        StartCoroutine(GetMoneyFromTasks(names));
         StartCoroutine(UnlockPlanet());
 
         
     }
 
-    
+    private void InformationBoardScriptOnTaskBuilt(object sender, BuiltTaskEventArgs e)
+    {
+        if (planet == e.planet)
+            CheckForCompletedTasksAndBuildThem(e.Task);
+    }
+
 
     private void PlanetUnlocked(Planet planet) {
         if (SaveSystem.LoadData().currentlevel >= planet.levelNeededToUnlock) {
@@ -70,57 +92,47 @@ public class PlanetScript : MonoBehaviour
         if (planet.unlocked == false) {
             lockStatus.SetActive(true);
         }
-        else if (planet.unlocked == true) {
+        else if (planet.unlocked) {
             lockStatus.SetActive(false);
         }
         
     }
 
-    public void CheckForCompletedTasksAndBuildThem() {
-        var names = new List<string>();
-        foreach (Task task in planet.tasks) {
-            names.Add(task.name);
-        }
-        List<Task> tasks = SaveSystem.LoadTasks(names);
-        
-            if (SaveSystem.LoadTasks(names) == null) {
-                tasks = planet.tasks;
-            }
-            foreach (Task task in tasks) {
-                if (task.completed) {
-                    
-                        if (planet.forTerraforming == false) {
-                        if (!prefabs.Any(t => t.name == task.name))
+    public void CheckForCompletedTasksAndBuildThem(Task task) {
+        if (task.completed)
+        {
+            var planetFromTask = SaveSystem.LoadPlanet(task.planetName);
+            if (planetFromTask.forTerraforming == false) {
+                if (!prefabs.Any(t => t.name == task.name))
                 {
+                    var spawnPoint = GameObject.Find(task.name).transform;
                     // Instantiate the prefab and add it to the list
-                    var prefab = Instantiate(TaskPrefab, spawnPoints[tasks.IndexOf(task)].transform.position, spawnPoints[tasks.IndexOf(task)].transform.rotation, transform);
+                    var prefab = Instantiate(TaskPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, transform);
                     prefab.transform.GetChild(0).GetComponent<Image>().sprite = task.icon;
                     prefab.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => {
                         if (task.usable){
-                        upgradeBoardScript.ShowUpgradeBoard(task.name);
+                            upgradeBoardScript.ShowUpgradeBoard(task.name);
                         }
-                        });
+                    });
                     prefab.transform.GetChild(1).gameObject.SetActive(true);
                     prefab.transform.GetChild(1).GetComponent<TimeManager>().SetTask(prefab);
                     prefab.transform.GetChild(1).GetComponent<TimeManager>().StartTimer(task, task.timeNeededinSeconds);
                     experience.AddExperience(task.experienceGain);
                     prefabs.Add(task);
                 }
-                    }
-                    else {
-                        if (!prefabs.Any(t => t.name == task.name)) {
-                            sr.sprite = task.icon;
-                        }
-                    }
-                    
-                    
-                    
+            }
+            else {
+                if (!prefabs.Any(t => t.name == task.name)) {
+                    GameObject.Find(planetFromTask.planetName+"_0").GetComponent<SpriteRenderer>().sprite = task.icon;
                 }
-                
+            }
+                    
+                    
+                    
         }
     }
 
-    IEnumerator getMoneyFromTasks(List<string> names) {
+    private IEnumerator GetMoneyFromTasks(List<string> names) {
         while (true) {
             yield return new WaitForSeconds(1f);
             var tasks = SaveSystem.LoadTasks(names);
@@ -128,14 +140,14 @@ public class PlanetScript : MonoBehaviour
                 break;
             }
             foreach (Task task in tasks) {
-                if (task.completed == true) {
-                    if (task.usable == true) {
-                    if (task.isOilDepositer == true) {
-                var oilgain = SaveSystem.LoadTask(task.name).oilGain;
+                if (task.completed) {
+                    if (task.usable) {
+                    if (task.isOilDepositer) {
+                var oilgain = task.oilGain;
                 buildUio.UpdateOil(oilgain);
             }
             else {
-                var moneyGain = SaveSystem.LoadTask(task.name).moneyGain;
+                var moneyGain = task.moneyGain;
                 buildUio.UpdateMoney(moneyGain);
             }}
                 }
@@ -145,17 +157,7 @@ public class PlanetScript : MonoBehaviour
         }
     }
 
-    
-
-    IEnumerator CheckForCompletedTasks() {
-        while (true) {
-            yield return new WaitForSeconds(0.6f);
-            if (planet.unlocked == true) CheckForCompletedTasksAndBuildThem();
-            
-        }
-    }
-
-    IEnumerator UnlockPlanet()
+    private IEnumerator UnlockPlanet()
     {
         while (true) {
             yield return new WaitForSeconds(0.75f);
@@ -178,11 +180,11 @@ public class PlanetScript : MonoBehaviour
         informationBoard.gameObject.SetActive(true);
 
         var informationBoardScript = informationBoard.GetComponent<InformationBoard>();
-        informationBoardScript.SetTasks(planet.tasks);
-        informationBoardScript.SetPlanetName(planet.planetName);
+        informationBoardScript.SetTasks(savedTasks);
+        informationBoardScript.SetPlanet(planet);
         informationBoardScript.ShowTasks();
         var names = new List<string>();
-        foreach (Task task in planet.tasks) {
+        foreach (Task task in savedTasks) {
             names.Add(task.name);
         }
         informationBoardScript.SetNames(names);

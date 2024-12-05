@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Titan Base
   m_EditorClassIdentifier: 
   name: Titan Base
+  planetName: Titan
   description: Build your N2 Bombs here! Fresh Nitrogen for a few grands!
   icon: {fileID: -8574546087326221986, guid: 11cad48425ba8e04983989f12664630b, type: 3}
   materialCost: 25000
@@ -33,3 +34,5 @@ MonoBehaviour:
   oilGain: 1
   moneyCost: 100000
   dependencies: []
+  timeNeededinSeconds: 0
+  usable: 0

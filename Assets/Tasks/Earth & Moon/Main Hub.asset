@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Main Hub
   m_EditorClassIdentifier: 
   name: Main Hub
+  planetName: Earth
   description: MAIN HUB tracks your stats, manages resources, and generates income
     for your terraforming journey!
   icon: {fileID: -1656166294940094332, guid: 24e292e8f1db38a4380cf44c0c0e763d, type: 3}

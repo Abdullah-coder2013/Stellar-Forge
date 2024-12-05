@@ -46,7 +46,7 @@ public class WaveSpawner : MonoBehaviour
         while (waveOnGoing) {
             yield return new WaitForSeconds(spawnRate);
             var bossfind = GameObject.Find(boss.gameObject.name + "(Clone)");
-            if (bossfind == null) {
+            if (bossfind is null) {
                 
                 GameObject asteroid = Instantiate(Asteroid, GetRandomAsteroidPosition(p1, p2), Quaternion.identity);
                 asteroid.GetComponent<Asteroid>().SetSpeed(asteroidSpeed);

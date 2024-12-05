@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Rocket Launch Centre
   m_EditorClassIdentifier: 
   name: Rocket Launch Centre
+  planetName: Earth
   description: Launch your missions! The Rocket Launch Center prepares and deploys
     spacecraft for your terraforming adventures.
   icon: {fileID: -3150344387745340581, guid: 353f95e4f56ff2b4f98b2bb95460e52b, type: 3}
@@ -23,4 +24,16 @@ MonoBehaviour:
   levelRequired: 5
   placeToBuild: {fileID: 0}
   unlocked: 0
+  oilCost: 0
   completed: 0
+  level2: 0
+  level5: 0
+  level10: 0
+  level15: 0
+  level20: 0
+  isOilDepositer: 0
+  oilGain: 0
+  moneyCost: 0
+  dependencies: []
+  timeNeededinSeconds: 0
+  usable: 0

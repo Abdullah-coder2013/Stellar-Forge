@@ -3275,7 +3275,6 @@ MonoBehaviour:
   planet: {fileID: 11400000, guid: 5eba7abaf8d2ed2499ee9ecc4058a9f6, type: 2}
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
-  forTerraforming: 0
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
   spawnPoints:
   - {fileID: 1675780690}
@@ -4550,7 +4549,6 @@ MonoBehaviour:
   planet: {fileID: 11400000, guid: 2aa526f719687c944881e042578263e0, type: 2}
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
-  forTerraforming: 0
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
   spawnPoints:
   - {fileID: 775948253}
@@ -4993,7 +4991,7 @@ GameObject:
   m_Component:
   - component: {fileID: 775948253}
   m_Layer: 0
-  m_Name: Moon base
+  m_Name: Moon Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11216,7 +11214,6 @@ MonoBehaviour:
   planet: {fileID: 11400000, guid: ee5b2cfa05a01bb48922c00c864ee4a2, type: 2}
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
-  forTerraforming: 0
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
   spawnPoints:
   - {fileID: 390788634}
@@ -12415,7 +12412,6 @@ MonoBehaviour:
   planet: {fileID: 11400000, guid: 0ff4c0d7c990d684bac6792a124d8d19, type: 2}
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
-  forTerraforming: 1
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
   spawnPoints: []
   lockStatus: {fileID: 298773232}
@@ -14463,7 +14459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.2921143, y: 3.8759766}
+  m_AnchoredPosition: {x: 1.2919922, y: 3.8759766}
   m_SizeDelta: {x: -111.1113, y: -80.1035}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2135667119

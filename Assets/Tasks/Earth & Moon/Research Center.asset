@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Research Center
   m_EditorClassIdentifier: 
   name: Research Center
+  planetName: Earth
   description: Unlock groundbreaking advancements! The Research Center boosts your
     terraforming projects with enhanced technology and discoveries.
   icon: {fileID: 3810858993628657823, guid: bd506960a9e494540a40d6dc393a52b3, type: 3}

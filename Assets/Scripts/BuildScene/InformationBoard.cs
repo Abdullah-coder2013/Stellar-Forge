@@ -15,10 +15,13 @@ public class InformationBoard : MonoBehaviour
     [FormerlySerializedAs("ButtonPrefab")] [SerializeField] private GameObject buttonPrefab;
     public List<string> names = new List<string>();
     [SerializeField] private TMP_Text planetName;
+    private Planet planet;
+
+    public event System.EventHandler<BuiltTaskEventArgs> TaskBuilt;
 
     public void SetTasks(List<Task> tasks) { this.tasks = tasks; }
     public void SetNames(List<string> names) { this.names = names; }
-    public void SetPlanetName(string name) {planetName.text = name;}
+    public void SetPlanet(Planet planet) {planetName.text = planet.planetName; this.planet = planet;}
 
     private void Update() {
         if (tasks == null) {
@@ -159,6 +162,7 @@ public class InformationBoard : MonoBehaviour
                             SaveSystem.SaveData(existingData);
                             tasks[index].Complete();
                             SaveSystem.SaveTask(tasks[index]);
+                            TaskBuilt?.Invoke(this, new BuiltTaskEventArgs(tasks[index], planet));
                             Back();
                         }
                     }
@@ -175,6 +179,7 @@ public class InformationBoard : MonoBehaviour
                             SaveSystem.SaveData(existingData);
                             tasks[index].Complete();
                             SaveSystem.SaveTask(tasks[index]);
+                            TaskBuilt?.Invoke(this, new BuiltTaskEventArgs(tasks[index], planet));
                             Back();
                         }
                     }

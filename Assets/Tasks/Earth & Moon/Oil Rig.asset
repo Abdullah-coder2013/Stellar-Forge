@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Oil Rig
   m_EditorClassIdentifier: 
   name: Oil Rig
+  planetName: Earth
   description: Oil
   icon: {fileID: 5936356172364887011, guid: 2c163fad49a9ae043a5d583a26c51d10, type: 3}
   materialCost: 500
@@ -22,6 +23,7 @@ MonoBehaviour:
   levelRequired: 6
   placeToBuild: {fileID: 0}
   unlocked: 0
+  oilCost: 0
   completed: 0
   level2: 0
   level5: 0
@@ -30,3 +32,7 @@ MonoBehaviour:
   level20: 0
   isOilDepositer: 1
   oilGain: 1
+  moneyCost: 0
+  dependencies: []
+  timeNeededinSeconds: 0
+  usable: 0

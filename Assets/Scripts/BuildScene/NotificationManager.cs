@@ -19,7 +19,7 @@ public class NotificationManager : MonoBehaviour
     {
         if (notificationQueue.Count > 0) {
             var notboard = Instantiate(notificationBoard, spawnPoint.transform.position, Quaternion.identity, this.transform);
-            StartCoroutine(DestroyNotificationAfterDelay(notboard, 3f));
+            StartCoroutine(DestroyNotificationAfterDelay(notboard, 2f));
             notificationBoard.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = notificationQueue.Dequeue();
         }
     }

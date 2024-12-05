@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lasers
   m_EditorClassIdentifier: 
   name: Lasers
+  planetName: Mars
   description: Melt the surface of Mars with Lasers to make a breathable atmosphere!
   icon: {fileID: -4798137097560686652, guid: 153343f2a17587f45825a25c3a14689a, type: 3}
   materialCost: 1000

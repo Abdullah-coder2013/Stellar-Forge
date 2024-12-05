@@ -5,6 +5,7 @@ using UnityEngine;
 public class Task : ScriptableObject
 {
     public new string name;
+    public string planetName;
     public string description;
     public Sprite icon;
     public int materialCost;
@@ -31,9 +32,10 @@ public class Task : ScriptableObject
     public float timeNeededinSeconds;
     public bool usable;
 
-    public Task(string name, string description, Sprite icon, int materialCost, int energyCost, int experienceGain, int moneyGain, int levelRequired, Transform placeToBuild, bool unlocked, bool completed, bool level2, bool level5, bool level10, bool level15, bool level20, bool isOilDepositer, int oilGain, int oilCost, int moneyCost, List<Task> dependencies, float timeNeededinSeconds, bool usable)
+    public Task(string name, string planetName, string description, Sprite icon, int materialCost, int energyCost, int experienceGain, int moneyGain, int levelRequired, Transform placeToBuild, bool unlocked, bool completed, bool level2, bool level5, bool level10, bool level15, bool level20, bool isOilDepositer, int oilGain, int oilCost, int moneyCost, List<Task> dependencies, float timeNeededinSeconds, bool usable)
     {
         this.name = name;
+        this.planetName = planetName;
         this.description = description;
         this.icon = icon;
         this.materialCost = materialCost;

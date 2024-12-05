@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Moon base
   m_EditorClassIdentifier: 
   name: Moon Base
+  planetName: Moon
   description: Establish your foothold! The Moon Base provides resources and research
     for advanced terraforming efforts.
   icon: {fileID: -6807761119836099118, guid: 3f89b1f0d6709424880bc8cb486d4fa7, type: 3}

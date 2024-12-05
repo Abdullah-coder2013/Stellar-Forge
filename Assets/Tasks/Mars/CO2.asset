@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CO2
   m_EditorClassIdentifier: 
   name: CO2
+  planetName: Mars
   description: I hate to say it, but you need these gases.
   icon: {fileID: 355247455063099181, guid: 4ffa1a3e5a360cf41be13dad910a5fca, type: 3}
   materialCost: 50
@@ -33,3 +34,5 @@ MonoBehaviour:
   oilGain: 0
   moneyCost: 5000
   dependencies: []
+  timeNeededinSeconds: 0
+  usable: 0

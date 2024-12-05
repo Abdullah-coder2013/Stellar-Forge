@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Biosphere
   m_EditorClassIdentifier: 
   name: Biosphere
+  planetName: Mars
   description: Make your dead island lively!
   icon: {fileID: -6077687655769123431, guid: 1a0e9023022787047be1c7784faea04c, type: 3}
   materialCost: 1000
@@ -33,3 +34,5 @@ MonoBehaviour:
   oilGain: 0
   moneyCost: 12000
   dependencies: []
+  timeNeededinSeconds: 0
+  usable: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: N2 Shooter
   m_EditorClassIdentifier: 
   name: N2 Shooter
+  planetName: Titan
   description: Shoot your N2 Bombs directly at Mars! It will work without any problems!
     I think...
   icon: {fileID: 2381864938270355359, guid: 4217d015ca78bef48bf0b1ba5d5ea72f, type: 3}
@@ -34,3 +35,5 @@ MonoBehaviour:
   oilGain: 0
   moneyCost: 0
   dependencies: []
+  timeNeededinSeconds: 0
+  usable: 0
