@@ -14,7 +14,7 @@ public class Experience : MonoBehaviour
     [SerializeField] private TextMeshProUGUI experienceText;
     [SerializeField] private Image experienceFill;
 
-    private void Start() {
+    private void Awake() {
         SaveChecker();
         UpdateLevel();
     }
@@ -23,7 +23,7 @@ public class Experience : MonoBehaviour
         if (SaveSystem.LoadData() != null) {
             Data data = SaveSystem.LoadData();
             currentlevel = data.currentlevel;
-            totalExperience = data.totalExperience;
+            totalExperience += data.totalExperience;
             previousLevelsExperience = data.previousLevelsExperience;
             nextLevelsExperience = data.nextLevelsExperience;
             UpdateInterface();

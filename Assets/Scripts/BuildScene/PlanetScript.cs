@@ -187,15 +187,17 @@ public class PlanetScript : MonoBehaviour
         informationBoard.gameObject.SetActive(true);
 
         var informationBoardScript = informationBoard.GetComponent<InformationBoard>();
-        informationBoardScript.SetTasks(savedTasks);
-        informationBoardScript.SetPlanet(planet);
+        informationBoardScript.planetName.text = planet.planetName;
+        informationBoardScript.tasks = savedTasks;
+        informationBoardScript.planet = planet;
         informationBoardScript.constantTasks = constantTasks;
         informationBoardScript.ShowTasks();
         var names = new List<string>();
         foreach (var task in savedTasks) {
             names.Add(task.name);
         }
-        informationBoardScript.SetNames(names);
+
+        informationBoardScript.names = names;
     }
 
 }

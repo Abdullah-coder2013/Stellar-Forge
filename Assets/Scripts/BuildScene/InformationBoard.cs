@@ -10,19 +10,15 @@ public class InformationBoard : MonoBehaviour
     private float firstXSpawnPosition = -519;
     private float widthOfButton = 233.4507f;
     private int spaceWidth = 10;
-    [FormerlySerializedAs("Tasks")] public List<Task> tasks = new List<Task>();
+    public List<Task> tasks;
     private List<GameObject> buttons = new List<GameObject>();
     [FormerlySerializedAs("ButtonPrefab")] [SerializeField] private GameObject buttonPrefab;
     public List<string> names = new List<string>();
     public List<Task> constantTasks;
-    [SerializeField] private TMP_Text planetName;
-    private Planet planet;
+    public TMP_Text planetName;
+    public Planet planet;
 
     public event System.EventHandler<BuiltTaskEventArgs> TaskBuilt;
-
-    public void SetTasks(List<Task> tasks) { this.tasks = tasks; }
-    public void SetNames(List<string> names) { this.names = names; }
-    public void SetPlanet(Planet planet) {planetName.text = planet.planetName; this.planet = planet;}
 
     private void Update() {
         if (tasks == null) {
@@ -41,16 +37,7 @@ public class InformationBoard : MonoBehaviour
     /// The button's appearance and click behavior change based on the task's unlocked and completed status.
     /// </summary>
     public void ShowTasks() {
-        if (SaveSystem.LoadTasks(names) != null) {
-            tasks = SaveSystem.LoadTasks(names);
-        }
-        else {
-            foreach (Task task in tasks) {
-                SaveSystem.SaveTask(task);
-            }
-            tasks = SaveSystem.LoadTasks(names);
-        }
-
+        
         foreach (var task in tasks) {
             var constantTask = constantTasks.Find(x => x.name == task.name);
             var xpos = firstXSpawnPosition;
