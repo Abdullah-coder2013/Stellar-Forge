@@ -14,6 +14,7 @@ public class InformationBoard : MonoBehaviour
     private List<GameObject> buttons = new List<GameObject>();
     [FormerlySerializedAs("ButtonPrefab")] [SerializeField] private GameObject buttonPrefab;
     public List<string> names = new List<string>();
+    public List<Task> constantTasks;
     [SerializeField] private TMP_Text planetName;
     private Planet planet;
 
@@ -50,7 +51,8 @@ public class InformationBoard : MonoBehaviour
             tasks = SaveSystem.LoadTasks(names);
         }
 
-        foreach (Task task in tasks) {
+        foreach (var task in tasks) {
+            var constantTask = constantTasks.Find(x => x.name == task.name);
             var xpos = firstXSpawnPosition;
             if (spawnRect.childCount == 0) {
                 xpos = firstXSpawnPosition;
@@ -64,7 +66,7 @@ public class InformationBoard : MonoBehaviour
             
             var button = Instantiate(buttonPrefab, new Vector3(spawnRect.position.x + xpos, spawnRect.position.y, 0), Quaternion.identity, spawnRect);
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = task.name;
-            button.transform.GetChild(1).GetComponent<Image>().sprite = task.icon;
+            button.transform.GetChild(1).GetComponent<Image>().sprite = constantTask.icon;
             button.transform.GetChild(2).gameObject.SetActive(true);
             button.transform.GetChild(3).gameObject.SetActive(true);
             if (task.unlocked == true && task.completed == false) {
@@ -162,7 +164,7 @@ public class InformationBoard : MonoBehaviour
                             SaveSystem.SaveData(existingData);
                             tasks[index].Complete();
                             SaveSystem.SaveTask(tasks[index]);
-                            TaskBuilt?.Invoke(this, new BuiltTaskEventArgs(tasks[index], planet));
+                            TaskBuilt?.Invoke(this, new BuiltTaskEventArgs(tasks[index], planet, constantTasks[index]));
                             Back();
                         }
                     }
@@ -179,7 +181,7 @@ public class InformationBoard : MonoBehaviour
                             SaveSystem.SaveData(existingData);
                             tasks[index].Complete();
                             SaveSystem.SaveTask(tasks[index]);
-                            TaskBuilt?.Invoke(this, new BuiltTaskEventArgs(tasks[index], planet));
+                            TaskBuilt?.Invoke(this, new BuiltTaskEventArgs(tasks[index], planet, constantTasks[index]));
                             Back();
                         }
                     }

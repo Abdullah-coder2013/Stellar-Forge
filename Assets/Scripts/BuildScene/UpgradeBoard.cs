@@ -15,15 +15,15 @@ public class UpgradeBoard : MonoBehaviour
     private void Start() {
         upgradeBoard.SetActive(false);
     }
-    public void ShowUpgradeBoard(string name) {
+    public void ShowUpgradeBoard(string name, Task constantTask) {
         var task = SaveSystem.LoadTask(name);
         title.text = task.name;
         upgradeBoard.SetActive(true);
-        level2.transform.GetChild(1).GetComponent<Image>().sprite = task.icon;
-        level5.transform.GetChild(1).GetComponent<Image>().sprite = task.icon;
-        level10.transform.GetChild(1).GetComponent<Image>().sprite = task.icon;
-        level15.transform.GetChild(1).GetComponent<Image>().sprite = task.icon;
-        level20.transform.GetChild(1).GetComponent<Image>().sprite = task.icon;
+        level2.transform.GetChild(1).GetComponent<Image>().sprite = constantTask.icon;
+        level5.transform.GetChild(1).GetComponent<Image>().sprite = constantTask.icon;
+        level10.transform.GetChild(1).GetComponent<Image>().sprite = constantTask.icon;
+        level15.transform.GetChild(1).GetComponent<Image>().sprite = constantTask.icon;
+        level20.transform.GetChild(1).GetComponent<Image>().sprite = constantTask.icon;
         
         level2.transform.GetChild(4).GetComponent<TMPro.TMP_Text>().text = (task.materialCost * 2).ToString()+"$";
         level5.transform.GetChild(4).GetComponent<TMPro.TMP_Text>().text = (task.materialCost * 5).ToString()+ "$";

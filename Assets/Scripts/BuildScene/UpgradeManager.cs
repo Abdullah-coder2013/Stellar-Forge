@@ -7,8 +7,10 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text cost;
     public int level = 1;
 
-    private void Start() {
-        if (SaveSystem.LoadUpgrade(upgrade.upgradeName).level != null)
+    private void Start()
+    {
+        var iupgrade = SaveSystem.LoadUpgrade(upgrade.upgradeName);
+        if (iupgrade != null)
             level = int.Parse(SaveSystem.LoadUpgrade(upgrade.upgradeName).level);
     }
 

@@ -15,6 +15,7 @@ public class PlanetScript : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints;
     [SerializeField] private GameObject lockStatus;
     [SerializeField] private Experience experience;
+    private List<Task> constantTasks = new List<Task>();
 
     private BuildUI buildUio;
     private SpriteRenderer sr;
@@ -35,16 +36,13 @@ public class PlanetScript : MonoBehaviour
         informationBoard.gameObject.SetActive(false);
         var informationBoardScript = informationBoard.GetComponent<InformationBoard>();
         informationBoardScript.TaskBuilt += InformationBoardScriptOnTaskBuilt;
-        if (SaveSystem.LoadPlanet(planet.planetName) != null) {
-            planet = SaveSystem.LoadPlanet(planet.planetName);
-        }
-        else {
-            SaveSystem.SavePlanet(planet);
-            planet = SaveSystem.LoadPlanet(planet.planetName);
-        }
         foreach (var newTask in planet.tasks)
         {
             var loadedTask = SaveSystem.LoadTask(newTask.name);
+            if (loadedTask is null)
+            {
+                loadedTask = newTask;
+            }
             if (loadedTask)
             {
                 savedTasks.Add(loadedTask);
@@ -53,6 +51,14 @@ public class PlanetScript : MonoBehaviour
             {
                 savedTasks.Add(newTask);
             }
+            constantTasks.Add(newTask);
+        }
+        if (SaveSystem.LoadPlanet(planet.planetName) != null) {
+            planet = SaveSystem.LoadPlanet(planet.planetName);
+        }
+        else {
+            SaveSystem.SavePlanet(planet);
+            planet = SaveSystem.LoadPlanet(planet.planetName);
         }
         var names = new List<string>();
         foreach (var task in savedTasks) {
@@ -61,7 +67,8 @@ public class PlanetScript : MonoBehaviour
 
         foreach (var task in savedTasks)
         {
-            CheckForCompletedTasksAndBuildThem(task);
+            var constantTask = constantTasks.Find(x => x.name == task.name);
+            BuildTask(task, constantTask);
         }
         StartCoroutine(GetMoneyFromTasks(names));
         StartCoroutine(UnlockPlanet());
@@ -72,7 +79,7 @@ public class PlanetScript : MonoBehaviour
     private void InformationBoardScriptOnTaskBuilt(object sender, BuiltTaskEventArgs e)
     {
         if (planet == e.planet)
-            CheckForCompletedTasksAndBuildThem(e.Task);
+            BuildTask(e.Task, e.constantTask);
     }
 
 
@@ -98,7 +105,7 @@ public class PlanetScript : MonoBehaviour
         
     }
 
-    public void CheckForCompletedTasksAndBuildThem(Task task) {
+    public void BuildTask(Task task, Task constantTask) {
         if (task.completed)
         {
             var planetFromTask = SaveSystem.LoadPlanet(task.planetName);
@@ -108,10 +115,10 @@ public class PlanetScript : MonoBehaviour
                     var spawnPoint = GameObject.Find(task.name).transform;
                     // Instantiate the prefab and add it to the list
                     var prefab = Instantiate(TaskPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, transform);
-                    prefab.transform.GetChild(0).GetComponent<Image>().sprite = task.icon;
+                    prefab.transform.GetChild(0).GetComponent<Image>().sprite = constantTask.icon;
                     prefab.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => {
                         if (task.usable){
-                            upgradeBoardScript.ShowUpgradeBoard(task.name);
+                            upgradeBoardScript.ShowUpgradeBoard(task.name, constantTask);
                         }
                     });
                     prefab.transform.GetChild(1).gameObject.SetActive(true);
@@ -139,7 +146,7 @@ public class PlanetScript : MonoBehaviour
             if (tasks == null) {
                 break;
             }
-            foreach (Task task in tasks) {
+            foreach (var task in tasks) {
                 if (task.completed) {
                     if (task.usable) {
                     if (task.isOilDepositer) {
@@ -182,9 +189,10 @@ public class PlanetScript : MonoBehaviour
         var informationBoardScript = informationBoard.GetComponent<InformationBoard>();
         informationBoardScript.SetTasks(savedTasks);
         informationBoardScript.SetPlanet(planet);
+        informationBoardScript.constantTasks = constantTasks;
         informationBoardScript.ShowTasks();
         var names = new List<string>();
-        foreach (Task task in savedTasks) {
+        foreach (var task in savedTasks) {
             names.Add(task.name);
         }
         informationBoardScript.SetNames(names);
