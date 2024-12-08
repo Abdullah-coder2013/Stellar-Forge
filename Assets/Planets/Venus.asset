@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70ae4b90da942c43a11e8802f4d0670, type: 3}
+  m_Name: Venus
+  m_EditorClassIdentifier: 
+  levelNeededToUnlock: 30
+  planetName: Venus
+  planetSprite: {fileID: 2994328829104379615, guid: 52ebe4244f0d2af4a8dfb9c41f5bc616, type: 3}
+  tasks:
+  - {fileID: 11400000, guid: 77435cbab6a95324bb29a01b9791f218, type: 2}
+  - {fileID: 11400000, guid: 2a793b039b320e240b920c1d38f1c2da, type: 2}
+  - {fileID: 11400000, guid: 31dab2c584f69594ca9a2c043ed0e47b, type: 2}
+  - {fileID: 11400000, guid: e9e63af1abd1df5418e7fb1f116d50ad, type: 2}
+  - {fileID: 11400000, guid: 0b95e2c7cc864f44081cc744c125e895, type: 2}
+  unlocked: 0
+  forTerraforming: 1

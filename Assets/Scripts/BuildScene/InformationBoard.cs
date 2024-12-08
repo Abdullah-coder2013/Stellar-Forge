@@ -148,6 +148,8 @@ public class InformationBoard : MonoBehaviour
                             var existingData = SaveSystem.LoadData();
                             existingData.material = existingData.material - tasks[index].materialCost;
                             existingData.energy = existingData.energy - tasks[index].energyCost;
+                            existingData.money = existingData.money - tasks[index].moneyCost;
+                            existingData.oil = existingData.oil - tasks[index].oilCost;
                             SaveSystem.SaveData(existingData);
                             tasks[index].Complete();
                             SaveSystem.SaveTask(tasks[index]);

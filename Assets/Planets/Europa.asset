@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70ae4b90da942c43a11e8802f4d0670, type: 3}
+  m_Name: Europa
+  m_EditorClassIdentifier: 
+  levelNeededToUnlock: 0
+  planetName: Europa
+  planetSprite: {fileID: -5473906797603978514, guid: 103ae6395456c1e4c9c0833141f9bc6b, type: 3}
+  tasks:
+  - {fileID: 11400000, guid: 79202ec4e897d5245b768a073d49aa4b, type: 2}
+  - {fileID: 11400000, guid: 582ca294abdb7aa42ba27417334a5e16, type: 2}
+  unlocked: 0
+  forTerraforming: 0
