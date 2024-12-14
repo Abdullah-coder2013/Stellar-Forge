@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private int damage = 15;
     [SerializeField] private GameObject hitEffect;
-    [SerializeField] private int ExpContained = 13;
+    [SerializeField] private Experience experience;
     private GameObject UiController;
         // Start is called before the first frame update
     void Awake() {
@@ -36,9 +36,11 @@ public class Bullet : MonoBehaviour
         }
 
         if (asteroid != null) {
-            UiController.GetComponent<UIController>().UpdateMaterial(asteroid.materialincluded);
-            UiController.GetComponent<UIController>().UpdateEnergy(asteroid.energyincluded);
-            UiController.GetComponent<UIController>().UpdateExp(ExpContained);
+            var savedData = SaveSystem.LoadData();
+            UiController.GetComponent<UIController>().UpdateMaterial(Mathf.RoundToInt(Mathf.Round(asteroid.materialincluded * savedData.incomeMultiplier)));
+            UiController.GetComponent<UIController>().UpdateEnergy(asteroid.energyincluded * savedData.incomeMultiplier);
+            UiController.GetComponent<UIController>().UpdateExp(Mathf.RoundToInt(Mathf.Round(asteroid.xpIncluded * savedData.incomeMultiplier)));
+            experience.AddExperience(Mathf.RoundToInt(Mathf.Round(asteroid.xpIncluded * savedData.incomeMultiplier)));
             asteroid.SelfDestruct();
         }
         Destroy(gameObject);

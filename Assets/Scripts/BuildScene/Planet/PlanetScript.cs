@@ -29,7 +29,7 @@ public class PlanetScript : MonoBehaviour
         buildUio = GameObject.Find("UIController").GetComponent<BuildUI>();
         forTerraforming = planet.forTerraforming;
         if (SaveSystem.LoadData() == null) {
-            SaveSystem.SaveData(new Data(0, 0, experience.totalExperience, experience.currentlevel, experience.previousLevelsExperience, experience.nextLevelsExperience, 0, 0));
+            SaveSystem.SaveData(new Data(0, 0, experience.totalExperience, experience.currentlevel, experience.previousLevelsExperience, experience.nextLevelsExperience, 0, 0, 1f));
         }
     }
     private void Start() {

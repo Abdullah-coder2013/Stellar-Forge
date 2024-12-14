@@ -171,3 +171,4 @@ MonoBehaviour:
   damage: 15
   hitEffect: {fileID: 7562074119799004331, guid: 6fa591779bc802a4a9b967c1f4a36e14, type: 3}
   ExpContained: 13
+  experience: {fileID: 8816409589769947440, guid: 57de6b8e58e34aa43b878f09c26e4024, type: 3}

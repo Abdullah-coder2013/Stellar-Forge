@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
 {
     public TMP_Text MaterialShower;
     public TMP_Text EnergyShower;
+    public TMP_Text XpShower;
     public int collectedExp;
     [SerializeField] private Canvas inGameUI;
     [SerializeField] private GameObject PauseUI;
@@ -15,6 +16,7 @@ public class UIController : MonoBehaviour
     private void Start(){
         MaterialShower.text = "0";
         EnergyShower.text = "0";
+        XpShower.text = "0";
         PauseUI.gameObject.SetActive(false);
 
     }
@@ -57,8 +59,18 @@ public class UIController : MonoBehaviour
         EnergyShower.text = (floatEnergy + amount).ToString();
     }
 
-    public void UpdateExp(int amount){
+    public void UpdateExp(int amount)
+    {
         collectedExp += amount;
+        if (XpShower != null)
+        {
+            XpShower.text = (cInt(XpShower.text) + amount).ToString();
+        }
+        else
+        {
+            print("XpShower is null!");
+        }
+         
     }
     public void DisableInGameUI(){
         inGameUI.gameObject.SetActive(false);

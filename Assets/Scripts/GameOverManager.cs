@@ -65,12 +65,12 @@ public class GameOverManager : MonoBehaviour
             e = dat.energy;
         }
         Data exdata = SaveSystem.LoadData();
-        var data = new Data(m, e, 0, 1, 0, 100, exdata.money, exdata.oil);
+        var data = new Data(m, e, 0, 1, 0, 100, exdata.money, exdata.oil, exdata.incomeMultiplier);
         if (exdata != null) {
-            data = new Data(m+=int.Parse(UIController.GetComponent<UIController>().MaterialShower.text), e+=float.Parse(UIController.GetComponent<UIController>().EnergyShower.text), experience.totalExperience, experience.currentlevel, experience.previousLevelsExperience, experience.nextLevelsExperience, exdata.money, exdata.oil);
+            data = new Data(m+int.Parse(UIController.GetComponent<UIController>().MaterialShower.text), e+float.Parse(UIController.GetComponent<UIController>().EnergyShower.text), experience.totalExperience, experience.currentlevel, experience.previousLevelsExperience, experience.nextLevelsExperience, exdata.money, exdata.oil, exdata.incomeMultiplier);
         }
         else {
-            data = new Data(m+=int.Parse(UIController.GetComponent<UIController>().MaterialShower.text), e+=float.Parse(UIController.GetComponent<UIController>().EnergyShower.text), experience.totalExperience, experience.currentlevel, experience.previousLevelsExperience, experience.nextLevelsExperience, 0, 0);
+            data = new Data(m+=int.Parse(UIController.GetComponent<UIController>().MaterialShower.text), e+=float.Parse(UIController.GetComponent<UIController>().EnergyShower.text), experience.totalExperience, experience.currentlevel, experience.previousLevelsExperience, experience.nextLevelsExperience, 0, 0, 1f);
         }
         
 

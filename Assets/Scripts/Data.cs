@@ -9,8 +9,9 @@ public class Data
     public int previousLevelsExperience, nextLevelsExperience;
     public int money;
     public int oil;
+    public float incomeMultiplier = 1f;
 
-    public Data(int material, float energy, int totalExperience, int currentlevel, int previousLevelsExperience, int nextLevelsExperience, int money, int oil)
+    public Data(int material, float energy, int totalExperience, int currentlevel, int previousLevelsExperience, int nextLevelsExperience, int money, int oil, float incomeMultiplier)
     {
         this.material = material;
         this.energy = energy;
@@ -20,6 +21,7 @@ public class Data
         this.nextLevelsExperience = nextLevelsExperience;
         this.money = money;
         this.oil = oil;
+        this.incomeMultiplier = incomeMultiplier;
     }
     
 }

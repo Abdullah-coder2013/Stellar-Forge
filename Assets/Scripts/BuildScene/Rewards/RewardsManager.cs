@@ -104,7 +104,12 @@ public class RewardsManager : MonoBehaviour
         }
         else if (rewardtype == oil)
         {
-            uiController.UpdateOil((int)rewardtype.rewardAmount.Evaluate(iteration-1));
+            if (iteration == 1)
+                uiController.UpdateOil((int)rewardtype.rewardAmount.Evaluate(iteration));
+            else
+            {
+                uiController.UpdateOil((int)rewardtype.rewardAmount.Evaluate(iteration-1));
+            }
         }
         
         taskInStar.GetChild(2).gameObject.SetActive(true);
@@ -135,15 +140,28 @@ public class RewardsManager : MonoBehaviour
             stext += "{\"serializedRewards\":[";
             for (var n = 0; n <= 99; n++)
             {
-                if (n == 99)
+
+                if (n <= experience.currentlevel)
                 {
-                    stext += "\"locked\"";
+                    if (n == 99)
+                    {
+                        stext += "\"unlocked\"";
+                    }
+                    else
+                    {
+                        stext += "\"unlocked\",";
+                    }
                 }
-                else
-                {
-                    stext += "\"locked\",";
+                else {
+                    if (n == 99)
+                    {
+                        stext += "\"locked\"";
+                    }
+                    else
+                    {
+                        stext += "\"locked\",";
+                    }
                 }
-                
             }
             stext += "]}";
             System.IO.File.WriteAllText(Application.persistentDataPath + "/SerializedRewards.json", stext);
@@ -217,14 +235,14 @@ public class RewardsManager : MonoBehaviour
 
                         startpos.x -= widthOfStar;
 
-                        if (serializedRewards.serializedRewards[n - 1] == "completed")
-                        {
-                            rewardtosave.Add("\"completed\"");
-                        }
-
                         if (n - 1 == experience.currentlevel)
                         {
-                            rewardtosave.Add("\"unlocked\"");
+                            if (serializedRewards.serializedRewards[n] != "completed")
+                                rewardtosave.Add("\"unlocked\"");
+                            else
+                            {
+                                rewardtosave.Add("\"completed\"");
+                            }
                             starr.transform.Find("StarContent/Fill").gameObject.GetComponent<Image>().fillAmount =
                                 (float)(experience.totalExperience - experience.previousLevelsExperience) /
                                 (float)(experience.nextLevelsExperience - experience.previousLevelsExperience);
@@ -233,6 +251,10 @@ public class RewardsManager : MonoBehaviour
                         {
                             if (serializedRewards.serializedRewards[n] != "completed")
                                 rewardtosave.Add("\"unlocked\"");
+                            else
+                            {
+                                rewardtosave.Add("\"completed\"");
+                            }
                             taskInStar.GetChild(3).gameObject.SetActive(false);
                             starr.transform.Find("StarContent/Fill").gameObject.GetComponent<Image>()
                                 .fillAmount = 1f;

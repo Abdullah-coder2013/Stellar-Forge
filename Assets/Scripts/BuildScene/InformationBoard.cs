@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,8 +18,11 @@ public class InformationBoard : MonoBehaviour
     public List<Task> constantTasks;
     public TMP_Text planetName;
     public Planet planet;
+    [SerializeField] private DescriptionBoard descriptionBoard;
 
     public event System.EventHandler<BuiltTaskEventArgs> TaskBuilt;
+
+    
 
     private void Update() {
         if (tasks == null) {
@@ -69,7 +73,7 @@ public class InformationBoard : MonoBehaviour
             }
             button.GetComponent<Button>().onClick.AddListener(() => {
 
-                TaskComplete(tasks.IndexOf(task));
+                descriptionBoard.ShowDescriptionBoard(task, tasks.IndexOf(task));
                 
                 
             });

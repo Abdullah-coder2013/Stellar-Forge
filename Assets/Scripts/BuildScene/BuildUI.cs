@@ -51,7 +51,7 @@ public class BuildUI : MonoBehaviour
         print(cInt(MaterialShower.text) + amount);
         MaterialShower.text = (cInt(MaterialShower.text) + amount).ToString();
         var existingData = SaveSystem.LoadData();
-        SaveSystem.SaveData(new Data(cInt(MaterialShower.text), existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, existingData.oil));
+        SaveSystem.SaveData(new Data(cInt(MaterialShower.text), existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, existingData.oil, existingData.incomeMultiplier));
     } else {
         Debug.LogError("MaterialShower is null!");
     }
@@ -60,19 +60,19 @@ public class BuildUI : MonoBehaviour
         var floatEnergy = float.Parse(EnergyShower.text);
         EnergyShower.text = (floatEnergy + amount).ToString();
         var existingData = SaveSystem.LoadData();
-        SaveSystem.SaveData(new Data(existingData.material, float.Parse(EnergyShower.text), existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, existingData.oil));
+        SaveSystem.SaveData(new Data(existingData.material, float.Parse(EnergyShower.text), existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, existingData.oil, existingData.incomeMultiplier));
     }
     public void UpdateMoney(int amount){
         var money = SaveSystem.LoadData().money;
         MoneyShower.text = (money + amount).ToString() + "$";
         var existingData = SaveSystem.LoadData();
-        SaveSystem.SaveData(new Data(existingData.material, existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, money + amount, existingData.oil));
+        SaveSystem.SaveData(new Data(existingData.material, existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, money + amount, existingData.oil, existingData.incomeMultiplier));
     }
     public void UpdateOil(int amount){
         var oil = SaveSystem.LoadData().oil;
         OilShower.text = (oil + amount).ToString() + "l";
         var existingData = SaveSystem.LoadData();
-        SaveSystem.SaveData(new Data(existingData.material, existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, oil + amount));
+        SaveSystem.SaveData(new Data(existingData.material, existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, oil + amount, existingData.incomeMultiplier));
     }
 
     public void DisableInGameUI(){

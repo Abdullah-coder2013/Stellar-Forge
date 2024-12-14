@@ -39,13 +39,19 @@ public class Experience : MonoBehaviour
         CheckforLevelUp();
         UpdateInterface();
         var existingData = SaveSystem.LoadData();
-        SaveSystem.SaveData(new Data(existingData.material, existingData.energy, totalExperience, currentlevel, previousLevelsExperience, nextLevelsExperience, existingData.money, existingData.oil));
+        SaveSystem.SaveData(new Data(existingData.material, existingData.energy, totalExperience, currentlevel, previousLevelsExperience, nextLevelsExperience, existingData.money, existingData.oil, existingData.incomeMultiplier));
         
     }
 
     void CheckforLevelUp() {
         if(totalExperience >= nextLevelsExperience) {
             currentlevel++;
+            var exdata = SaveSystem.LoadData();
+            if (exdata != null)
+            {
+                exdata.incomeMultiplier += 0.25f;
+                SaveSystem.SaveData(exdata);
+            }
             UpdateLevel();
     }
     }

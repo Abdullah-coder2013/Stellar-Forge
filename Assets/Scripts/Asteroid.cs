@@ -14,6 +14,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private Sprite smallAsteroid;
     public int materialincluded = 10;
     public float energyincluded;
+    public int xpIncluded;
     public int asteroidDamage = 10;
     private bool once = true;
     private float asteroidSpeed;
@@ -35,6 +36,7 @@ public class Asteroid : MonoBehaviour
         rb.linearVelocity = Vector2.left * asteroidSpeed;
         rb.angularVelocity = Random.Range(-200f, 200f);
         energyincluded = rb.angularVelocity/asteroidSpeed;
+        xpIncluded = Mathf.RoundToInt(rb.angularVelocity / asteroidSpeed + (energyincluded / asteroidSpeed));
     }
 
     public void SelfDestruct()
