@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class Boss : MonoBehaviour
 {
@@ -15,17 +16,22 @@ public class Boss : MonoBehaviour
     private bool once = true;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private CircleCollider2D cc;
+    [SerializeField] private List<BossSo> bossSo;
     
     private void Start() {
         explosion.Stop();
-        StartCoroutine(launchAttacks());
+        var rnd = new Random();
+        var randindex = rnd.Next(bossSo.Count);
+        var bossSelected = bossSo[randindex];
+        sr.sprite = bossSelected.sprite;
+        StartCoroutine(launchAttacks(bossSelected.attackSprite));
         healthBar.SetMaxHealth(health);
         
 
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    IEnumerator launchAttacks() {
+    IEnumerator launchAttacks(Sprite attackSprite) {
         while (health > 0) {
             yield return new WaitForSeconds(coolDown);
             var a1 =Instantiate(Asteroid, new Vector3(transform.position.x -3, -5, 0), Quaternion.identity);
@@ -38,6 +44,11 @@ public class Boss : MonoBehaviour
             a3.GetComponent<Asteroid>().SetSpeed(attackSpeed);
             a4.GetComponent<Asteroid>().SetSpeed(attackSpeed);
             a5.GetComponent<Asteroid>().SetSpeed(attackSpeed);
+            a1.GetComponent<Asteroid>().bigAsteroid = attackSprite;
+            a2.GetComponent<Asteroid>().bigAsteroid = attackSprite;
+            a3.GetComponent<Asteroid>().bigAsteroid = attackSprite;
+            a4.GetComponent<Asteroid>().bigAsteroid = attackSprite;
+            a5.GetComponent<Asteroid>().bigAsteroid = attackSprite;
 
         }
     }

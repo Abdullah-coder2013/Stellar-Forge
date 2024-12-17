@@ -10,8 +10,8 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private ParticleSystem particles;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private CircleCollider2D cc;
-    [SerializeField] private Sprite bigAsteroid;
-    [SerializeField] private Sprite smallAsteroid;
+    [SerializeField] public Sprite bigAsteroid;
+    [SerializeField] public Sprite smallAsteroid;
     public int materialincluded = 10;
     public float energyincluded;
     public int xpIncluded;

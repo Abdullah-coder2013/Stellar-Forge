@@ -5010,6 +5010,7 @@ MonoBehaviour:
   smallAsteroid: {fileID: 21300000, guid: 49b0fa806799fe04b9484ca0e7a9136b, type: 3}
   materialincluded: 10
   energyincluded: 0
+  xpIncluded: 0
   asteroidDamage: 5
 --- !u!212 &3098957307229135624
 SpriteRenderer:

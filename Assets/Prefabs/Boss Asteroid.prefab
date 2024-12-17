@@ -570,7 +570,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e1c5a9d6b964a304cae0b7d3f2c38ad6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f2ab03436fd3304ba523ddf0dfd4214, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -600,6 +600,9 @@ MonoBehaviour:
   health: 500
   sr: {fileID: -700106736239369879}
   cc: {fileID: -6497314347712733194}
+  bossSo:
+  - {fileID: 11400000, guid: 1432b79c72f4b7945891116465a8c645, type: 2}
+  - {fileID: 11400000, guid: a4b5bc5ab3b8a284b90c9c1c48cd8e24, type: 2}
 --- !u!58 &-6497314347712733194
 CircleCollider2D:
   m_ObjectHideFlags: 0

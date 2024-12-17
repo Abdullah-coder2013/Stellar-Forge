@@ -12,10 +12,12 @@ public class BuildUI : MonoBehaviour
     [SerializeField] private Canvas upgradeUI;
 
     [SerializeField] private Canvas inGameUI;
+    [SerializeField] private Canvas roletteui;
 
     private void Start(){
         shopUI.gameObject.SetActive(false);
         upgradeUI.gameObject.SetActive(false);
+        roletteui.gameObject.SetActive(false);
         Data data = SaveSystem.LoadData();
         MaterialShower.text = data.material.ToString();
         EnergyShower.text = data.energy.ToString();
@@ -47,14 +49,10 @@ public class BuildUI : MonoBehaviour
     }
 
     public void UpdateMaterial(int amount){
-        if (MaterialShower != null) {
         print(cInt(MaterialShower.text) + amount);
         MaterialShower.text = (cInt(MaterialShower.text) + amount).ToString();
         var existingData = SaveSystem.LoadData();
         SaveSystem.SaveData(new Data(cInt(MaterialShower.text), existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, existingData.oil, existingData.incomeMultiplier));
-    } else {
-        Debug.LogError("MaterialShower is null!");
-    }
     }
     public void UpdateEnergy(float amount){
         var floatEnergy = float.Parse(EnergyShower.text);
