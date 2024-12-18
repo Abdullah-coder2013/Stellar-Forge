@@ -68,7 +68,7 @@ public class PlanetScript : MonoBehaviour
         foreach (var task in savedTasks)
         {
             var constantTask = constantTasks.Find(x => x.name == task.name);
-            BuildTask(task, constantTask);
+            BuildTask(task, constantTask, true);
         }
         StartCoroutine(GetMoneyFromTasks(names));
         StartCoroutine(UnlockPlanet());
@@ -79,7 +79,7 @@ public class PlanetScript : MonoBehaviour
     private void InformationBoardScriptOnTaskBuilt(object sender, BuiltTaskEventArgs e)
     {
         if (planet == e.planet)
-            BuildTask(e.Task, e.constantTask);
+            BuildTask(e.Task, e.constantTask, false);
     }
 
 
@@ -105,7 +105,7 @@ public class PlanetScript : MonoBehaviour
         
     }
 
-    public void BuildTask(Task task, Task constantTask) {
+    public void BuildTask(Task task, Task constantTask, bool firstTime) {
         if (task.completed)
         {
             var planetFromTask = SaveSystem.LoadPlanet(task.planetName);
@@ -124,7 +124,10 @@ public class PlanetScript : MonoBehaviour
                     prefab.transform.GetChild(1).gameObject.SetActive(true);
                     prefab.transform.GetChild(1).GetComponent<TimeManager>().SetTask(prefab);
                     prefab.transform.GetChild(1).GetComponent<TimeManager>().StartTimer(task, task.timeNeededinSeconds);
-                    experience.AddExperience(task.experienceGain);
+                    if (firstTime)
+                        experience.AddExperience(0);
+                    else
+                        experience.AddExperience(task.experienceGain);
                     prefabs.Add(task);
                 }
             }

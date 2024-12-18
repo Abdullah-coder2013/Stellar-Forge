@@ -44,12 +44,12 @@ public class TimeManager : MonoBehaviour
                 
                 if (timer > 0) {
                     if (firstTime) {
-                        int timePassed = StringToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")).Subtract(StringToDateTime(SaveSystem.LoadTimeData(task).lastSavedTime)).Seconds;
+                        var timePassed = StringToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")).Subtract(StringToDateTime(SaveSystem.LoadTimeData(task).lastSavedTime)).TotalSeconds;
             if (timePassed > timer) {
                 timer = 0;
             }
             else {
-                timer = timer - timePassed;
+                timer = timer - (float)timePassed;
             }
             firstTime = false;
                 }
