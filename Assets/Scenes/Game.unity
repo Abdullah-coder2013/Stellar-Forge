@@ -412,7 +412,7 @@ MonoBehaviour:
   bossSpawnChance: 59
   waveOnGoing: 1
   asteroidsPerWave: 10
-  bossSpawnPoint: {fileID: 1266089121}
+  bossSpawnPolong: {fileID: 1266089121}
   asteroidSpeed: 5
 --- !u!1 &240430177
 GameObject:

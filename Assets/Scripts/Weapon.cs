@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private Transform FirePoint;
+    [SerializeField] private Transform FirePolong;
     [SerializeField] private GameObject BulletPrefab;
     private PlayerInputs inputActions;
 
@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
     {
         
             if (inputActions.PlayerInputActions.Shoot.triggered == true) {
-                Instantiate(BulletPrefab, FirePoint.position, Quaternion.Euler(0, 0, 90));
+                Instantiate(BulletPrefab, FirePolong.position, Quaternion.Euler(0, 0, 90));
                 
                 
             }

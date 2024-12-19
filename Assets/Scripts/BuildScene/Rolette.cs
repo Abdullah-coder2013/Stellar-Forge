@@ -6,7 +6,7 @@ public class Roulette : MonoBehaviour
     public float StopPower;
 
     private Rigidbody2D rbody;
-    private int inRotate;
+    private long inRotate;
 
     [SerializeField] private BuildUI uiController;
     [SerializeField] private Experience experience;
@@ -41,7 +41,7 @@ public class Roulette : MonoBehaviour
         }
     }
 
-    public enum winType
+    public enum wlongype
     {
         material,
         energy,
@@ -69,86 +69,86 @@ public class Roulette : MonoBehaviour
         if (rot > 0 && rot <= 30)
         {
             rect.eulerAngles = new Vector3(0, 0, 0);
-            Win(599, winType.energy);
+            Win(599, wlongype.energy);
         }
         else if (rot > 30 && rot <= 60)
         {
-            Win(850, winType.exp);
+            Win(850, wlongype.exp);
             rect.eulerAngles = new Vector3(0, 0, 30);
         }
         else if (rot > 60 && rot <= 90)
         {
             rect.eulerAngles = new Vector3(0, 0, 60);
-            Win(755, winType.material);
+            Win(755, wlongype.material);
         }
         else if (rot > 90 && rot <= 125)
         {
             rect.eulerAngles = new Vector3(0, 0, 90);
-            Win(1567, winType.money);
+            Win(1567, wlongype.money);
         }
         else if (rot > 125 && rot <= 155)
         {
             rect.eulerAngles = new Vector3(0, 0, 125);
-            Win(945, winType.oil);
+            Win(945, wlongype.oil);
         }
         else if (rot > 155 && rot <= 185)
         {
             rect.eulerAngles = new Vector3(0, 0, 155);
-            Win(1346, winType.material);
+            Win(1346, wlongype.material);
         }
         else if (rot > 185 && rot <= 215)
         {
             rect.eulerAngles = new Vector3(0, 0, 185);
-            Win(5000, winType.energy);
+            Win(5000, wlongype.energy);
         }
         else if (rot > 215 && rot <= 245)
         {
             rect.eulerAngles = new Vector3(0, 0, 215);
-            Win(6357, winType.material);
+            Win(6357, wlongype.material);
         }
         else if (rot > 245 && rot <= 275)
         {
             rect.eulerAngles = new Vector3(0, 0, 245);
-            Win(2000, winType.money);
+            Win(2000, wlongype.money);
         }
         else if (rot > 275 && rot <= 305)
         {
             rect.eulerAngles = new Vector3(0, 0, 275);
-            Win(1600, winType.oil);
+            Win(1600, wlongype.oil);
         }
         else if (rot > 305 && rot <= 335)
         {
             rect.eulerAngles = new Vector3(0, 0, 305);
-            Win(2500, winType.exp);
+            Win(2500, wlongype.exp);
         }
         else if (rot > 335 && rot <= 365)
         {
             rect.eulerAngles = new Vector3(0, 0, 335);
-            Win(347, winType.money);
+            Win(347, wlongype.money);
         }
 
     }
 
 
-    public void Win(int amount, winType winType)
+    public void Win(int amount, wlongype wlongype)
     {
-        if (winType == winType.material)
+        if (wlongype == wlongype.material)
         {
             uiController.UpdateMaterial(amount);
         }
-        else if (winType == winType.energy)
+        else if (wlongype == wlongype.energy)
         {
             uiController.UpdateEnergy(amount);
         }
-        else if (winType == winType.oil)
+        else if (wlongype == wlongype.oil)
         {
             uiController.UpdateOil(amount);
         }
-        else if (winType == winType.exp)
+        else if (wlongype == wlongype.exp)
         {
             experience.AddExperience(amount);
         }
-        else if (winType == winType.money)
+        else if (wlongype == wlongype.money)
         {
             uiController.UpdateMoney(amount);
         }

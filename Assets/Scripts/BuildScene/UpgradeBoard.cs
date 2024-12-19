@@ -60,7 +60,7 @@ public class UpgradeBoard : MonoBehaviour
          gameObject.SetActive(false);
     }
 
-    private void ReactToButton(Task task, int level) {
+    private void ReactToButton(Task task, long level) {
         var stask = SaveSystem.LoadTask(task.name);
         if (SaveSystem.LoadData().money >= Cost(level, stask.materialCost)) {
             var exdata = SaveSystem.LoadData();
@@ -72,7 +72,7 @@ public class UpgradeBoard : MonoBehaviour
         }
     }
 
-    private GameObject ButtonReturner(int level) {
+    private GameObject ButtonReturner(long level) {
         switch (level) {
             case 2:
                 return level2;
@@ -89,7 +89,7 @@ public class UpgradeBoard : MonoBehaviour
         }
     }
 
-    private void Refresh(Task task, int level, GameObject button) {
+    private void Refresh(Task task, long level, GameObject button) {
         if (level == 2) {
             if (task.level2) {
                 level2.transform.GetChild(2).gameObject.SetActive(true);
@@ -118,7 +118,7 @@ public class UpgradeBoard : MonoBehaviour
 
     }
 
-    private int Cost(int level, int cost) {
+    private long Cost(long level, long cost) {
         switch (level) {
             case 2:
                 return cost * 2;
@@ -135,7 +135,7 @@ public class UpgradeBoard : MonoBehaviour
         }
     }
 
-    private Task TaskReturner(Task task, int level) {
+    private Task TaskReturner(Task task, long level) {
         if (task.isOilDepositer == false) {
             switch (level) {
             case 2:

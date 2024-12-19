@@ -5,7 +5,7 @@ using UnityEngine;
 public class NotificationManager : MonoBehaviour
 {
     [SerializeField] private GameObject notificationBoard;
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform spawnPolong;
     public static Queue<string> notificationQueue = new();
     private static readonly int SlideOut = Animator.StringToHash("SlideOut");
 
@@ -18,7 +18,7 @@ public class NotificationManager : MonoBehaviour
     private void Update()
     {
         if (notificationQueue.Count > 0) {
-            var notboard = Instantiate(notificationBoard, spawnPoint.transform.position, Quaternion.identity, this.transform);
+            var notboard = Instantiate(notificationBoard, spawnPolong.transform.position, Quaternion.identity, this.transform);
             StartCoroutine(DestroyNotificationAfterDelay(notboard, 2f));
             notificationBoard.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = notificationQueue.Dequeue();
         }

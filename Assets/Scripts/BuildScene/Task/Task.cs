@@ -8,14 +8,14 @@ public class Task : ScriptableObject
     public string planetName;
     public string description;
     public Sprite icon;
-    public int materialCost;
-    public int energyCost;
-    public int experienceGain;
+    public long materialCost;
+    public long energyCost;
+    public long experienceGain;
     public int moneyGain;
-    public int levelRequired;
+    public long levelRequired;
     public Transform placeToBuild;
     public bool unlocked;
-    public int oilCost;
+    public long oilCost;
     
     public bool completed;
 
@@ -27,12 +27,12 @@ public class Task : ScriptableObject
 
     public bool isOilDepositer;
     public int oilGain;
-    public int moneyCost;
+    public long moneyCost;
     public List<Task> dependencies = new List<Task>();
     public float timeNeededinSeconds;
     public bool usable;
 
-    public Task(string name, string planetName, string description, Sprite icon, int materialCost, int energyCost, int experienceGain, int moneyGain, int levelRequired, Transform placeToBuild, bool unlocked, bool completed, bool level2, bool level5, bool level10, bool level15, bool level20, bool isOilDepositer, int oilGain, int oilCost, int moneyCost, List<Task> dependencies, float timeNeededinSeconds, bool usable)
+    public Task(string name, string planetName, string description, Sprite icon, long materialCost, long energyCost, long experienceGain, int moneyGain, long levelRequired, Transform placeToBuild, bool unlocked, bool completed, bool level2, bool level5, bool level10, bool level15, bool level20, bool isOilDepositer, int oilGain, long oilCost, long moneyCost, List<Task> dependencies, float timeNeededinSeconds, bool usable)
     {
         this.name = name;
         this.planetName = planetName;
@@ -69,7 +69,7 @@ public class Task : ScriptableObject
             return false;
         }
     }
-    public bool Unlock(int level)
+    public bool Unlock(long level)
     {
         if (levelRequired <= level) {
             unlocked = true;

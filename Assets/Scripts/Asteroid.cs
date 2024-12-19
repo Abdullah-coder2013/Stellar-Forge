@@ -12,10 +12,10 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private CircleCollider2D cc;
     [SerializeField] public Sprite bigAsteroid;
     [SerializeField] public Sprite smallAsteroid;
-    public int materialincluded = 10;
-    public float energyincluded;
-    public int xpIncluded;
-    public int asteroidDamage = 10;
+    public long materialincluded = 10;
+    public int energyincluded;
+    public long xpIncluded;
+    public long asteroidDamage = 10;
     private bool once = true;
     private float asteroidSpeed;
 
@@ -23,7 +23,7 @@ public class Asteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int num = Random.Range(1, 3);
+        long num = Random.Range(1, 3);
         if (num == 1)
         {
             sr.sprite = smallAsteroid;
@@ -35,7 +35,7 @@ public class Asteroid : MonoBehaviour
         particles.Stop();
         rb.linearVelocity = Vector2.left * asteroidSpeed;
         rb.angularVelocity = Random.Range(-200f, 200f);
-        energyincluded = rb.angularVelocity/asteroidSpeed;
+        energyincluded = Mathf.RoundToInt(rb.angularVelocity/asteroidSpeed);
         xpIncluded = Mathf.RoundToInt(rb.angularVelocity / asteroidSpeed + (energyincluded / asteroidSpeed));
     }
 

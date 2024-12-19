@@ -10,7 +10,7 @@ public class WaveCreator : MonoBehaviour
     [SerializeField] private TMP_Text WaveText;
     [SerializeField] private WaveSpawner waveSpawner;
     [SerializeField] private GameObject firstButton;
-    public int wave = 1;
+    public long wave = 1;
     // Start is called before the first frame update
     void Start()
     {

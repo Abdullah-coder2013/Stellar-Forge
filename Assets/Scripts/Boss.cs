@@ -12,7 +12,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private HealthBar healthBar;
     public event EventHandler isDead;
-    public int health = 500;
+    public long health = 500;
     private bool once = true;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private CircleCollider2D cc;
@@ -69,7 +69,7 @@ public class Boss : MonoBehaviour
         
         
     }
-    public void TakeDamage(int damage) {
+    public void TakeDamage(long damage) {
         health -= damage;
         healthBar.SetHealth(health);
         if (health < 0) {

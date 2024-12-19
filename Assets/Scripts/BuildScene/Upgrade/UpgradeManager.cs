@@ -5,7 +5,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private Upgrade upgrade;
     [SerializeField] private TMPro.TMP_Text title;
     [SerializeField] private TMPro.TMP_Text cost;
-    public int level = 1;
+    public long level = 1;
 
     private void Start()
     {

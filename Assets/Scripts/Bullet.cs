@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed = 10f;
-    [SerializeField] private int damage = 15;
+    [SerializeField] private long damage = 15;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private Experience experience;
     private GameObject UiController;
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         }
 
         if (SaveSystem.LoadUpgrade("Bullet Damage") != null) {
-            damage += int.Parse(SaveSystem.LoadUpgrade("Bullet Damage").level);
+            damage += long.Parse(SaveSystem.LoadUpgrade("Bullet Damage").level);
         }
         rb.linearVelocity = Vector2.right * speed;
     }
@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
         if (asteroid != null) {
             var savedData = SaveSystem.LoadData();
             UiController.GetComponent<UIController>().UpdateMaterial(Mathf.RoundToInt(Mathf.Round(asteroid.materialincluded * savedData.incomeMultiplier)));
-            UiController.GetComponent<UIController>().UpdateEnergy(asteroid.energyincluded * savedData.incomeMultiplier);
+            UiController.GetComponent<UIController>().UpdateEnergy(Mathf.RoundToInt(asteroid.energyincluded * savedData.incomeMultiplier));
             UiController.GetComponent<UIController>().UpdateExp(Mathf.RoundToInt(Mathf.Round(asteroid.xpIncluded * savedData.incomeMultiplier)));
             experience.AddExperience(Mathf.RoundToInt(Mathf.Round(asteroid.xpIncluded * savedData.incomeMultiplier)));
             asteroid.SelfDestruct();

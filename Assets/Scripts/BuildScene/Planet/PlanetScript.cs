@@ -12,7 +12,7 @@ public class PlanetScript : MonoBehaviour
     private bool forTerraforming;
 
     [SerializeField] private GameObject TaskPrefab;
-    [SerializeField] private List<Transform> spawnPoints;
+    [SerializeField] private List<Transform> spawnPolongs;
     [SerializeField] private GameObject lockStatus;
     [SerializeField] private Experience experience;
     private List<Task> constantTasks = new List<Task>();
@@ -53,6 +53,14 @@ public class PlanetScript : MonoBehaviour
             }
             constantTasks.Add(newTask);
         }
+
+        foreach (var savedTask in savedTasks)
+        {
+            if (SaveSystem.LoadTask(savedTask.name))
+                break;
+            SaveSystem.SaveTask(savedTask);
+        }
+
         if (SaveSystem.LoadPlanet(planet.planetName) != null) {
             planet = SaveSystem.LoadPlanet(planet.planetName);
         }
@@ -112,9 +120,9 @@ public class PlanetScript : MonoBehaviour
             if (planetFromTask.forTerraforming == false) {
                 if (!prefabs.Any(t => t.name == task.name))
                 {
-                    var spawnPoint = GameObject.Find(task.name).transform;
+                    var spawnPolong = GameObject.Find(task.name).transform;
                     // Instantiate the prefab and add it to the list
-                    var prefab = Instantiate(TaskPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, transform);
+                    var prefab = Instantiate(TaskPrefab, spawnPolong.transform.position, spawnPolong.transform.rotation, transform);
                     prefab.transform.GetChild(0).GetComponent<Image>().sprite = constantTask.icon;
                     prefab.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => {
                         if (task.usable){

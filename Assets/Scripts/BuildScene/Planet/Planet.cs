@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Planet", menuName = "Scriptable Objects/Planet")]
 public class Planet : ScriptableObject
 {
-    public int levelNeededToUnlock;
+    public long levelNeededToUnlock;
     public string planetName;
     public Sprite planetSprite;
 
@@ -13,7 +13,7 @@ public class Planet : ScriptableObject
     public bool unlocked;
     public bool forTerraforming;
 
-    public Planet(string name, Sprite icon, int levelRequired, bool forTerraforming, bool unlocked)
+    public Planet(string name, Sprite icon, long levelRequired, bool forTerraforming, bool unlocked)
     {
         this.name = name;
         planetSprite = icon;
@@ -21,7 +21,7 @@ public class Planet : ScriptableObject
         tasks = new List<Task>();
         this.forTerraforming = forTerraforming;
     }
-    public bool Unlocked(int level) {
+    public bool Unlocked(long level) {
         if (level >= levelNeededToUnlock) {
             unlocked = true;
             return true;

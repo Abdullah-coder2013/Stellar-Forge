@@ -10,7 +10,7 @@ public class InformationBoard : MonoBehaviour
     [SerializeField] private Transform spawnRect;
     private float firstXSpawnPosition = -519;
     private float widthOfButton = 233.4507f;
-    private int spaceWidth = 10;
+    private long spaceWidth = 10;
     public List<Task> tasks;
     private List<GameObject> buttons = new List<GameObject>();
     [FormerlySerializedAs("ButtonPrefab")] [SerializeField] private GameObject buttonPrefab;

@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     public TMP_Text MaterialShower;
     public TMP_Text EnergyShower;
     public TMP_Text XpShower;
-    public int collectedExp;
+    public long collectedExp;
     [SerializeField] private Canvas inGameUI;
     [SerializeField] private GameObject PauseUI;
     [SerializeField] private GameObject firstButton;
@@ -20,8 +20,8 @@ public class UIController : MonoBehaviour
         PauseUI.gameObject.SetActive(false);
 
     }
-    private int cInt(string text){
-        return int.Parse(text);
+    private long clong(string text){
+        return long.Parse(text);
     }
 
     public void PauseGame()
@@ -42,11 +42,11 @@ public class UIController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
-    public void UpdateMaterial(int amount){
+    public void UpdateMaterial(long amount){
         
         if (MaterialShower != null) {
         
-        MaterialShower.text = (cInt(MaterialShower.text) + amount).ToString();
+        MaterialShower.text = (clong(MaterialShower.text) + amount).ToString();
     } else {
         Debug.LogError("MaterialShower is null!");
     }
@@ -59,12 +59,12 @@ public class UIController : MonoBehaviour
         EnergyShower.text = (floatEnergy + amount).ToString();
     }
 
-    public void UpdateExp(int amount)
+    public void UpdateExp(long amount)
     {
         collectedExp += amount;
         if (XpShower != null)
         {
-            XpShower.text = (cInt(XpShower.text) + amount).ToString();
+            XpShower.text = (clong(XpShower.text) + amount).ToString();
         }
         else
         {

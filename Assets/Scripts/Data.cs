@@ -3,15 +3,15 @@ using UnityEngine;
 [System.Serializable]
 public class Data
 {
-    public int material;
+    public long material;
     public float energy;
-    public int totalExperience, currentlevel;
-    public int previousLevelsExperience, nextLevelsExperience;
-    public int money;
-    public int oil;
+    public long totalExperience, currentlevel;
+    public long previousLevelsExperience, nextLevelsExperience;
+    public long money;
+    public long oil;
     public float incomeMultiplier = 1f;
 
-    public Data(int material, float energy, int totalExperience, int currentlevel, int previousLevelsExperience, int nextLevelsExperience, int money, int oil, float incomeMultiplier)
+    public Data(long material, float energy, long totalExperience, long currentlevel, long previousLevelsExperience, long nextLevelsExperience, long money, long oil, float incomeMultiplier)
     {
         this.material = material;
         this.energy = energy;

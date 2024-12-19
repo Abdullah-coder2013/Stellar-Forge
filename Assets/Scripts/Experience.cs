@@ -6,9 +6,9 @@ using Unity.VisualScripting;
 public class Experience : MonoBehaviour
 {
     [SerializeField] private AnimationCurve experienceCurve;
-    public int currentlevel, totalExperience;
+    public long currentlevel, totalExperience;
 
-    public int previousLevelsExperience, nextLevelsExperience;
+    public long previousLevelsExperience, nextLevelsExperience;
 
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI experienceText;
@@ -26,18 +26,18 @@ public class Experience : MonoBehaviour
             totalExperience += data.totalExperience;
             previousLevelsExperience = data.previousLevelsExperience;
             nextLevelsExperience = data.nextLevelsExperience;
-            UpdateInterface();
+            Updatelongerface();
         }
         else {
             totalExperience = 0;
         }
     }
 
-    public void AddExperience(int experienceToAdd)
+    public void AddExperience(long experienceToAdd)
     {
         totalExperience += experienceToAdd;
         CheckforLevelUp();
-        UpdateInterface();
+        Updatelongerface();
         var existingData = SaveSystem.LoadData();
         SaveSystem.SaveData(new Data(existingData.material, existingData.energy, totalExperience, currentlevel, previousLevelsExperience, nextLevelsExperience, existingData.money, existingData.oil, existingData.incomeMultiplier));
         
@@ -57,14 +57,14 @@ public class Experience : MonoBehaviour
     }
 
     void UpdateLevel() {
-        previousLevelsExperience = (int)experienceCurve.Evaluate(currentlevel);
-        nextLevelsExperience = (int)experienceCurve.Evaluate(currentlevel+1);
-        UpdateInterface();
+        previousLevelsExperience = (long)experienceCurve.Evaluate(currentlevel);
+        nextLevelsExperience = (long)experienceCurve.Evaluate(currentlevel+1);
+        Updatelongerface();
     }
-    void UpdateInterface() {
-        int start = totalExperience - previousLevelsExperience;
+    void Updatelongerface() {
+        long start = totalExperience - previousLevelsExperience;
         
-        int end = nextLevelsExperience - previousLevelsExperience;
+        long end = nextLevelsExperience - previousLevelsExperience;
 
         levelText.text = currentlevel.ToString();
         experienceText.text = start + " / " + end;

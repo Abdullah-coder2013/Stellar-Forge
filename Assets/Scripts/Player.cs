@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private EdgeCollider2D cc;
     public event System.EventHandler PlayerDeath;
-    public int health = 100;
+    public long health = 100;
     private bool once = true;
     
 
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         inputActions.PlayerInputActions.Disable();
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(long damage) {
         health -= damage;
         healthBar.SetHealth(health);
         if (health < 0) {
