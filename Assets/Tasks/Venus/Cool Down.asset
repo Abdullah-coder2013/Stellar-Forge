@@ -23,9 +23,9 @@ MonoBehaviour:
   moneyGain: 0
   levelRequired: 30
   placeToBuild: {fileID: 0}
-  unlocked: 1
+  unlocked: 0
   oilCost: 3
-  completed: 1
+  completed: 0
   level2: 0
   level5: 0
   level10: 0

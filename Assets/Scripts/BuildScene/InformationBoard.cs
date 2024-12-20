@@ -131,6 +131,12 @@ public class InformationBoard : MonoBehaviour
             {
                 if (tasks[index] != tasks[0] && tasks[index - 1].completed)
                 {
+                    if (tasks[index].levelRequired != SaveSystem.LoadData().currentlevel)
+                    {
+                        NotificationManager.AddNotificationToQueue("You must reach level " +
+                                                                   tasks[index].levelRequired + " to complete this task");
+                        return;
+                    }
                     if (tasks[index].materialCost <= SaveSystem.LoadData().material)
                     {
                         if (tasks[index].energyCost <= SaveSystem.LoadData().energy)
@@ -164,6 +170,12 @@ public class InformationBoard : MonoBehaviour
                 }
                 else if (tasks[index] == tasks[0])
                 {
+                    if (tasks[index].levelRequired != SaveSystem.LoadData().currentlevel)
+                    {
+                        NotificationManager.AddNotificationToQueue("You must reach level " +
+                                                                   tasks[index].levelRequired + " to complete this task");
+                        return;
+                    }
                     if (tasks[index].materialCost <= SaveSystem.LoadData().material)
                     {
                         if (tasks[index].energyCost <= SaveSystem.LoadData().energy)

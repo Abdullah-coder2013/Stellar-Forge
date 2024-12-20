@@ -4393,11 +4393,7 @@ MonoBehaviour:
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
-  spawnPoints:
-  - {fileID: 1675780690}
-  - {fileID: 1035350855}
-  - {fileID: 1298797679}
-  - {fileID: 945382127}
+  spawnPolongs: []
   lockStatus: {fileID: 1007144505}
   experience: {fileID: 1821709683}
 --- !u!1 &520053317
@@ -6327,8 +6323,7 @@ MonoBehaviour:
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
-  spawnPoints:
-  - {fileID: 775948253}
+  spawnPolongs: []
   lockStatus: {fileID: 1762365184}
   experience: {fileID: 1821709683}
 --- !u!1001 &731115495
@@ -8870,7 +8865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notificationBoard: {fileID: 3353408708518875800, guid: bb7f30c0b4656a8489101de678ac7047, type: 3}
-  spawnPoint: {fileID: 588329304}
+  spawnPolong: {fileID: 588329304}
 --- !u!1 &985531165
 GameObject:
   m_ObjectHideFlags: 0
@@ -15157,9 +15152,7 @@ MonoBehaviour:
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
-  spawnPoints:
-  - {fileID: 390788634}
-  - {fileID: 1851790101}
+  spawnPolongs: []
   lockStatus: {fileID: 944279861}
   experience: {fileID: 1821709683}
 --- !u!212 &1639486377
@@ -15821,7 +15814,7 @@ MonoBehaviour:
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
-  spawnPoints: []
+  spawnPolongs: []
   lockStatus: {fileID: 1319192758}
   experience: {fileID: 1821709683}
 --- !u!1 &1821709681
@@ -16519,7 +16512,7 @@ MonoBehaviour:
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
-  spawnPoints: []
+  spawnPolongs: []
   lockStatus: {fileID: 298773232}
   experience: {fileID: 1821709683}
 --- !u!1 &1917685413
@@ -17462,9 +17455,7 @@ MonoBehaviour:
   informationBoard: {fileID: 470634977}
   upgradeBoard: {fileID: 121011678}
   TaskPrefab: {fileID: 459017388386480294, guid: 6d37aa44418065c46a2ecf7971a4270b, type: 3}
-  spawnPoints:
-  - {fileID: 2059087762}
-  - {fileID: 393455608}
+  spawnPolongs: []
   lockStatus: {fileID: 1670831701}
   experience: {fileID: 1821709683}
 --- !u!212 &2011364707
