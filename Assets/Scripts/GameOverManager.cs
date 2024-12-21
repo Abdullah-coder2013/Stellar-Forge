@@ -12,6 +12,8 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text materials;
     [SerializeField] private TMPro.TMP_Text energy;
     [SerializeField] private Experience experience;
+    [SerializeField] private AdsManager adsManager;
+    private string newLifeId = "ca-app-pub-7134863660692852/2428370755";
     private GameObject UIController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
@@ -49,11 +51,15 @@ public class GameOverManager : MonoBehaviour
 
     public void Respawn()
     {
-        UIController.GetComponent<UIController>().EnableInGameUI();
-        var player = Instantiate(playerPrefab, playerSpawnPosition.position, playerSpawnPosition.rotation);
-        player.GetComponent<Player>().PlayerDeath += GameOver;
-        Time.timeScale = 1f;
-        gameOverPanel.SetActive(false);
+        if (adsManager.ShowRewardedAd(newLifeId))
+        {
+            UIController.GetComponent<UIController>().EnableInGameUI();
+            var player = Instantiate(playerPrefab, playerSpawnPosition.position, playerSpawnPosition.rotation);
+            player.GetComponent<Player>().PlayerDeath += GameOver;
+            Time.timeScale = 1f;
+            gameOverPanel.SetActive(false);
+        }
+        
     }
 
     public void MainMenu() {

@@ -5,11 +5,14 @@ public class Roulette : MonoBehaviour
     public float RotatePower;
     public float StopPower;
 
+    private string prizeWheelKey = "ca-app-pub-7134863660692852/1115289086";
+    
     private Rigidbody2D rbody;
     private long inRotate;
 
     [SerializeField] private BuildUI uiController;
     [SerializeField] private Experience experience;
+    [SerializeField] private AdsManager adsManager;
     
 
     private void Start()
@@ -53,10 +56,13 @@ public class Roulette : MonoBehaviour
 
     public void Rotate() 
     {
-        if(inRotate == 0)
+        if (adsManager.ShowRewardedAd(prizeWheelKey))
         {
-            rbody.AddTorque(RotatePower);
-            inRotate = 1;
+            if (inRotate == 0)
+            {
+                rbody.AddTorque(RotatePower);
+                inRotate = 1;
+            }
         }
     }
 
