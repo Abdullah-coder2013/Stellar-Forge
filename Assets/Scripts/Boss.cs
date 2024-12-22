@@ -12,6 +12,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private HealthBar healthBar;
     public event EventHandler isDead;
+    [SerializeField] private AudioClip[] explosionSound;
+    [SerializeField] private AudioClip[] bossAttackSound;
+    [SerializeField] private AudioClip[] bossHitSound;
     public long health = 500;
     private bool once = true;
     [SerializeField] private SpriteRenderer sr;
@@ -34,6 +37,7 @@ public class Boss : MonoBehaviour
     IEnumerator launchAttacks(Sprite attackSprite) {
         while (health > 0) {
             yield return new WaitForSeconds(coolDown);
+            SoundManager.instance.PlayRandomSpecifiedSound(bossAttackSound, transform, 1f);
             var a1 =Instantiate(Asteroid, new Vector3(transform.position.x -3, -5, 0), Quaternion.identity);
             var a2 =Instantiate(Asteroid, new Vector3(transform.position.x -3, -3, 0), Quaternion.identity);
             var a3 =Instantiate(Asteroid, new Vector3(transform.position.x -3, 0, 0), Quaternion.identity);
@@ -55,6 +59,7 @@ public class Boss : MonoBehaviour
     private void Die() {
         
         if (once) {
+            SoundManager.instance.PlayRandomSpecifiedSound(explosionSound, transform, 1f);
             var em = explosion.emission;
             var dur = explosion.main.duration;
             em.enabled = true;
@@ -70,6 +75,7 @@ public class Boss : MonoBehaviour
         
     }
     public void TakeDamage(long damage) {
+        SoundManager.instance.PlayRandomSpecifiedSound(bossHitSound, transform, 1f);
         health -= damage;
         healthBar.SetHealth(health);
         if (health < 0) {

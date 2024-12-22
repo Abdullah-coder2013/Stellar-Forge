@@ -597,6 +597,12 @@ MonoBehaviour:
   coolDown: 2
   explosion: {fileID: 3630166401229265632}
   healthBar: {fileID: 5172381895512990418}
+  explosionSound:
+  - {fileID: 8300000, guid: 711232e564ed42c40815134c7f54bce5, type: 3}
+  bossAttackSound:
+  - {fileID: 8300000, guid: 28eec094015a87b48b57e660574eab4e, type: 3}
+  bossHitSound:
+  - {fileID: 8300000, guid: 9bcb76bb6185ba4419b0fcb08ce5b4ec, type: 3}
   health: 500
   sr: {fileID: -700106736239369879}
   cc: {fileID: -6497314347712733194}

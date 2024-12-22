@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
             UiController.GetComponent<UIController>().UpdateEnergy(Mathf.RoundToInt(asteroid.energyincluded * savedData.incomeMultiplier));
             UiController.GetComponent<UIController>().UpdateExp(Mathf.RoundToInt(Mathf.Round(asteroid.xpIncluded * savedData.incomeMultiplier)));
             experience.AddExperience(Mathf.RoundToInt(Mathf.Round(asteroid.xpIncluded * savedData.incomeMultiplier)));
-            asteroid.SelfDestruct();
+            asteroid.SelfDestruct(false);
         }
         Destroy(gameObject);
     }

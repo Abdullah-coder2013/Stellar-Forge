@@ -18,11 +18,16 @@ public class InformationBoard : MonoBehaviour
     public List<Task> constantTasks;
     public TMP_Text planetName;
     public Planet planet;
+    private AudioSource audioSource;
+    public AudioClip buttonClicked;
     [SerializeField] private DescriptionBoard descriptionBoard;
 
     public event System.EventHandler<BuiltTaskEventArgs> TaskBuilt;
 
-    
+    private void Awake()
+    {
+        audioSource = GameObject.Find("UI SFX").GetComponent<AudioSource>();
+    }
 
     private void Update() {
         if (tasks == null) {
@@ -74,7 +79,7 @@ public class InformationBoard : MonoBehaviour
             button.GetComponent<Button>().onClick.AddListener(() => {
 
                 descriptionBoard.ShowDescriptionBoard(task, tasks.IndexOf(task));
-                
+                audioSource.PlayOneShot(buttonClicked);
                 
             });
             buttons.Add(button);

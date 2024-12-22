@@ -77,10 +77,9 @@ public class BuildUI : MonoBehaviour
    }
 
     public void UpdateMaterial(int amount){
-        print(clong(MaterialShower.text) + amount);
-        MaterialShower.text = ToAbbreviatedString(clong(MaterialShower.text) + amount);
+        MaterialShower.text = ToAbbreviatedString(SaveSystem.LoadData().material + amount);
         var existingData = SaveSystem.LoadData();
-        SaveSystem.SaveData(new Data(clong(MaterialShower.text), existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, existingData.oil, existingData.incomeMultiplier));
+        SaveSystem.SaveData(new Data(SaveSystem.LoadData().material, existingData.energy, existingData.totalExperience, existingData.currentlevel, existingData.previousLevelsExperience, existingData.nextLevelsExperience, existingData.money, existingData.oil, existingData.incomeMultiplier));
     }
     public void UpdateEnergy(int amount){
         var floatEnergy = Mathf.RoundToInt(SaveSystem.LoadData().energy);

@@ -26,6 +26,14 @@ public class RewardsManager : MonoBehaviour
      [SerializeField] private ScrollRect scrollRect;
      [SerializeField] private RectTransform contentPanel;
      [SerializeField] private BuildUI uiController;
+     private AudioSource audioSource;
+     public AudioClip buttonHit;
+     
+     private void Awake()
+     {
+         experience = GetComponent<Experience>();
+         audioSource = GameObject.Find("UI SFX").GetComponent<AudioSource>();
+     }
 
      private void SnapTo(Transform target)
      {
@@ -34,10 +42,6 @@ public class RewardsManager : MonoBehaviour
          contentPanel.anchoredPosition =
              (Vector2)scrollRect.transform.InverseTransformPoint(contentPanel.position)
              - (Vector2)scrollRect.transform.InverseTransformPoint(target.position);
-     }
-     private void Awake()
-     {
-         experience = GetComponent<Experience>();
      }
 
      public void Close()
@@ -200,6 +204,7 @@ public class RewardsManager : MonoBehaviour
                             {
                                 RewardEvaluater(serializedRewards.serializedRewards[nCopy - 1], taskInStar,
                                     uiController, material, nCopy);
+                                audioSource.PlayOneShot(buttonHit);
                             });
                         }
                         else if (rewardsl[n - 1] == "Energy")
@@ -210,6 +215,7 @@ public class RewardsManager : MonoBehaviour
                             {
                                 RewardEvaluater(serializedRewards.serializedRewards[nCopy - 1], taskInStar,
                                     uiController, energy, nCopy);
+                                audioSource.PlayOneShot(buttonHit);
                             });
                         }
                         else if (rewardsl[n - 1] == "Money")
@@ -220,6 +226,7 @@ public class RewardsManager : MonoBehaviour
                             {
                                 RewardEvaluater(serializedRewards.serializedRewards[nCopy - 1], taskInStar,
                                     uiController, money, nCopy);
+                                audioSource.PlayOneShot(buttonHit);
                             });
                         }
                         else if (rewardsl[n - 1] == "Oil")
@@ -230,6 +237,7 @@ public class RewardsManager : MonoBehaviour
                             {
                                 RewardEvaluater(serializedRewards.serializedRewards[nCopy - 1], taskInStar,
                                     uiController, oil, nCopy);
+                                audioSource.PlayOneShot(buttonHit);
                             });
                         }
 

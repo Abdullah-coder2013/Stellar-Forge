@@ -22,8 +22,12 @@ public class PlanetScript : MonoBehaviour
     private List<Task> prefabs = new List<Task>();
     private UpgradeBoard upgradeBoardScript;
     private List<Task> savedTasks = new List<Task>();
+    private AudioSource audioSource;
+    public AudioClip buttonClicked;
+    
 
     private void Awake() {
+        audioSource = GameObject.Find("UI SFX").GetComponent<AudioSource>();
         upgradeBoardScript = upgradeBoard.GetComponent<UpgradeBoard>();
         sr = GetComponent<SpriteRenderer>();
         buildUio = GameObject.Find("UIController").GetComponent<BuildUI>();
@@ -128,6 +132,7 @@ public class PlanetScript : MonoBehaviour
                         if (task.usable){
                             upgradeBoardScript.ShowUpgradeBoard(task.name, constantTask);
                         }
+                        audioSource.PlayOneShot(buttonClicked);
                     });
                     prefab.transform.GetChild(1).gameObject.SetActive(true);
                     prefab.transform.GetChild(1).GetComponent<TimeManager>().SetTask(prefab);
@@ -195,6 +200,7 @@ public class PlanetScript : MonoBehaviour
     public void ShowInformationBoard() {
         if (!Unlocked()) return;
         if (SaveSystem.LoadData().currentlevel < planet.levelNeededToUnlock) return;
+        audioSource.PlayOneShot(buttonClicked);
         informationBoard.gameObject.SetActive(true);
 
         var informationBoardScript = informationBoard.GetComponent<InformationBoard>();

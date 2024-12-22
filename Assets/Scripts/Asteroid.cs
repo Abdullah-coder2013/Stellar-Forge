@@ -12,6 +12,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private CircleCollider2D cc;
     [SerializeField] public Sprite bigAsteroid;
     [SerializeField] public Sprite smallAsteroid;
+    [SerializeField] private AudioClip[] explosionSound;
     public long materialincluded = 10;
     public int energyincluded;
     public long xpIncluded;
@@ -39,9 +40,11 @@ public class Asteroid : MonoBehaviour
         xpIncluded = Mathf.RoundToInt(rb.angularVelocity / asteroidSpeed + (energyincluded / asteroidSpeed));
     }
 
-    public void SelfDestruct()
+    public void SelfDestruct(bool onwall)
     {
         if (once) {
+            if (!onwall)
+                SoundManager.instance.PlayRandomSpecifiedSound(explosionSound, transform, 1f);
             var em = particles.emission;
             var dur = particles.main.duration;
             em.enabled = true;
@@ -57,7 +60,14 @@ public class Asteroid : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D hitinfo)
     {
-        SelfDestruct();
+        if (hitinfo.gameObject.name == "Wall")
+        {
+            SelfDestruct(true);
+        }
+        else
+        {
+            SelfDestruct(false);
+        }
     }
     private void DestroySelf()
     {

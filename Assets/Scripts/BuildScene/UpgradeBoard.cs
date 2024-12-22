@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 public class UpgradeBoard : MonoBehaviour
@@ -9,8 +10,13 @@ public class UpgradeBoard : MonoBehaviour
     [SerializeField] private GameObject level20;
     [SerializeField] private TMPro.TMP_Text title;
     [SerializeField] private GameObject upgradeBoard;
+    private AudioSource audioSource;
+    public AudioClip buttonHit;
 
-    
+    private void Awake()
+    {
+        audioSource = GameObject.Find("UI SFX").GetComponent<AudioSource>();
+    }
 
     private void Start() {
         upgradeBoard.SetActive(false);
@@ -36,6 +42,12 @@ public class UpgradeBoard : MonoBehaviour
         level10.GetComponent<Button>().onClick.AddListener(() => ReactToButton(task, 10));
         level15.GetComponent<Button>().onClick.AddListener(() => ReactToButton(task, 15));
         level20.GetComponent<Button>().onClick.AddListener(() => ReactToButton(task, 20));
+        
+        level2.GetComponent<Button>().onClick.AddListener(() =>audioSource.PlayOneShot(buttonHit));
+        level5.GetComponent<Button>().onClick.AddListener(() =>audioSource.PlayOneShot(buttonHit));
+        level10.GetComponent<Button>().onClick.AddListener(() => audioSource.PlayOneShot(buttonHit));
+        level15.GetComponent<Button>().onClick.AddListener(() => audioSource.PlayOneShot(buttonHit));
+        level20.GetComponent<Button>().onClick.AddListener(() => audioSource.PlayOneShot(buttonHit));
 
         Refresh(task, 2, level2);
         Refresh(task, 5, level5);
